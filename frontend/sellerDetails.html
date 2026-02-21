@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let map, marker;
 
   try {
-    const res = await fetch(`http://localhost:5000/api/listings/${id}`);
+    const res = await fetch(`https://landsure.onrender.com/api/listings/${id}`);
     if (!res.ok) throw new Error("Listing not found");
     const l = await res.json();
 
@@ -301,7 +301,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (l.imageUrl) {
       const imgUrl = l.imageUrl.startsWith("http")
         ? l.imageUrl
-        : `http://localhost:5000${l.imageUrl}`;
+        : `https://landsure.onrender.com${l.imageUrl}`;
       document.getElementById("image").style.backgroundImage = `url('${imgUrl}')`;
     }
 
@@ -400,7 +400,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         try {
-          const res = await fetch(`http://localhost:5000/api/listings/${l._id}`, {
+          const res = await fetch(`https://landsure.onrender.com/api/listings/${l._id}`, {
             method: "PUT",
             headers: {
               "Content-Type":"application/json",
@@ -424,7 +424,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     deleteBtn.addEventListener("click", async () => {
       if (!confirm("Are you sure you want to delete this listing?")) return;
       try {
-        const res = await fetch(`http://localhost:5000/api/listings/${l._id}`, {
+        const res = await fetch(`https://landsure.onrender.com/api/listings/${l._id}`, {
           method: "DELETE",
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
         });

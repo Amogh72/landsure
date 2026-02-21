@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-        const res = await fetch(`http://localhost:5000/api/listings/search?q=${encodeURIComponent(locKey)}`);
+        const res = await fetch(`https://landsure.onrender.com/api/listings/search?q=${encodeURIComponent(locKey)}`);
         const data = await res.json();
 
         if (!res.ok || data.length === 0) {

@@ -348,7 +348,7 @@ document.getElementById("listingForm").addEventListener("submit", async (e) => {
         const token = localStorage.getItem("token");
         if (!token) { alert("Please log in first."); return; }
 
-        const res = await fetch("http://localhost:5000/api/listings", {
+        const res = await fetch("https://landsure.onrender.com/api/listings", {
             method: "POST",
             headers: { "Authorization": `Bearer ${token}` },
             body: formData
@@ -436,7 +436,7 @@ async function loadRandomLands() {
     try {
         const token = localStorage.getItem("token");
 
-        const res = await fetch("http://localhost:5000/api/listings/random-lands", {
+        const res = await fetch("https://landsure.onrender.com/api/listings/random-lands", {
             headers: token ? { "Authorization": `Bearer ${token}` } : {}
         });
 
@@ -457,7 +457,7 @@ async function loadRandomLands() {
 
             const imgUrl = land.imageUrl.startsWith("http")
                 ? land.imageUrl
-                : `http://localhost:5000${land.imageUrl}`;
+                : `https://landsure.onrender.com${land.imageUrl}`;
 
             card.style.backgroundImage = `url(${imgUrl})`;
 
@@ -490,7 +490,7 @@ async function loadMyListings() {
             return;
         }
 
-        const res = await fetch("http://localhost:5000/api/listings/my-listings", {
+        const res = await fetch("https://landsure.onrender.com/api/listings/my-listings", {
             headers: { "Authorization": `Bearer ${token}` }
         });
 
@@ -507,7 +507,7 @@ async function loadMyListings() {
             listings.forEach(listing => {
                 const imgUrl = listing.imageUrl?.startsWith("http")
                     ? listing.imageUrl
-                    : `http://localhost:5000${listing.imageUrl}`;
+                    : `https://landsure.onrender.com${listing.imageUrl}`;
 
                 const card = document.createElement("div");
                 card.classList.add("card");

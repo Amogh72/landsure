@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // --- FETCH USER DATA ---
   let userData;
   try {
-    const res = await fetch("http://localhost:5000/api/users/me", {
+    const res = await fetch("https://landsure.onrender.com/api/users/me", {
       headers: { Authorization: `Bearer ${token}` },
     });
     userData = await res.json();
@@ -259,7 +259,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (!confirm("This will permanently delete your account. Continue?")) return;
 
       try {
-        const res = await fetch("http://localhost:5000/api/users/delete", {
+        const res = await fetch("https://landsure.onrender.com/api/users/delete", {
           method: "DELETE",
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
@@ -326,7 +326,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       };
 
       try {
-        const res = await fetch("http://localhost:5000/api/users/update", {
+        const res = await fetch("https://landsure.onrender.com/api/users/update", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

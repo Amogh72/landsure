@@ -159,7 +159,7 @@ function renderListings(listings) {
         const imgUrl = listing.imageUrl && listing.imageUrl.startsWith("http")
             ? listing.imageUrl
             : listing.imageUrl
-                ? `http://localhost:5000${listing.imageUrl}`
+                ? `https://landsure.onrender.com${listing.imageUrl}`
                 : "default.jpg";
 
         const card = document.createElement("div");
@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const token = localStorage.getItem("token");
 
     try {
-        const res = await fetch("http://localhost:5000/api/users/saved", {
+        const res = await fetch("https://landsure.onrender.com/api/users/saved", {
             headers: { Authorization: `Bearer ${token}` }
         });
         if (!res.ok) throw new Error("Failed to fetch saved listings");
@@ -232,7 +232,7 @@ document.addEventListener("click", async (e) => {
     if (accountType !== "Buyer") return alert("Only buyers can save listings");
 
     try {
-        const res = await fetch(`http://localhost:5000/api/users/toggle-save/${listingId}`, {
+        const res = await fetch(`https://landsure.onrender.com/api/users/toggle-save/${listingId}`, {
             method: "POST",
             headers: { Authorization: `Bearer ${token}` }
         });

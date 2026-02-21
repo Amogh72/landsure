@@ -12,8 +12,6 @@
     <div class="signin-form">
         <div class="wrapper">
             <form action="">
-                <h1 id="formTitle">Register</h1>
-
                 <div class="inputbox">
                     <input type="text" id="username" name="username" placeholder="Enter your name" required>
                     <i class="fa-solid fa-user symbol"></i>
@@ -127,7 +125,7 @@
             };
 
             try {
-                const res = await fetch("http://localhost:5000/api/auth/register", {
+                const res = await fetch("https://landsure.onrender.com/api/auth/register", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(data)

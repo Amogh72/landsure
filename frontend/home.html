@@ -475,14 +475,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function loadFeaturedAndRecent() {
         try {
-            const res = await fetch("http://localhost:5000/api/listings/featured");
+            const res = await fetch("https://landsure.onrender.com/api/listings/featured");
             const data = await res.json();
             featuredListings = data.featured;
             allListings = data.recent;
 
             // Fetch saved listings for logged-in user
             if (token) {
-                const userRes = await fetch("http://localhost:5000/api/users/me", {
+                const userRes = await fetch("https://landsure.onrender.com/api/users/me", {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 if (userRes.ok) {
@@ -509,7 +509,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const isSaved = savedIds.includes(listing._id);
             const imgUrl = listing.imageUrl?.startsWith("http")
                 ? listing.imageUrl
-                : `http://localhost:5000${listing.imageUrl}`;
+                : `https://landsure.onrender.com${listing.imageUrl}`;
 
             const card = document.createElement("div");
             card.classList.add("card");
@@ -568,7 +568,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const imgUrl = listing.imageUrl?.startsWith("http")
             ? listing.imageUrl
-            : `http://localhost:5000${listing.imageUrl}`;
+            : `https://landsure.onrender.com${listing.imageUrl}`;
 
         featuredContainer.innerHTML = `
             <div class="fl-CardInfo">
@@ -626,7 +626,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (accountType !== "Buyer") return alert("Only buyers can save listings");
 
         try {
-            const res = await fetch(`http://localhost:5000/api/users/toggle-save/${listingId}`, {
+            const res = await fetch(`https://landsure.onrender.com/api/users/toggle-save/${listingId}`, {
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -661,7 +661,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const statsSection = document.querySelector(".totalLands");
         const landsEl = document.getElementById("landsVerified");
         try {
-            const res = await fetch("http://localhost:5000/api/listings/count");
+            const res = await fetch("https://landsure.onrender.com/api/listings/count");
             const data = await res.json();
             const totalLands = data.total;
             const observer = new IntersectionObserver((entries, observer) => {
@@ -697,7 +697,7 @@ async function fetchSuggestions(query) {
     return;
   }
   try {
-    const res = await fetch(`http://localhost:5000/api/listings/search-suggestions?q=${query}`);
+    const res = await fetch(`https://landsure.onrender.com/api/listings/search-suggestions?q=${query}`);
     const locations = await res.json();
 
     if (!Array.isArray(locations) || locations.length === 0) {
