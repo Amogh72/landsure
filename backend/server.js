@@ -9,7 +9,10 @@ const Listing = require("./models/Listing");
 
 const app = express();  // Create app before using middlewares
 
-app.use(cors());
+app.use(cors({
+  origin: true,   // allow requesting origin dynamically
+  credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());  // Use cookie-parser after app initialized
 
