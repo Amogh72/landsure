@@ -1,0 +1,43 @@
+<div class="listings"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+    const params = new URLSearchParams(window.location.search);
+    const locKey = params.get("loc");
+    const listingsContainer = document.querySelector(".listings");
+
+    if (!locKey) {
+        listingsContainer.innerHTML = "<p>No location specified.</p>";
+        return;
+    }
+
+    try {
+        const res = await fetch(`http://localhost:5000/api/listings/search?q=${encodeURIComponent(locKey)}`);
+        const data = await res.json();
+
+        if (!res.ok || data.length === 0) {
+            listingsContainer.innerHTML = "<p>No listings found.</p>";
+            return;
+        }
+
+        // Render results
+        listingsContainer.innerHTML = "";
+        data.forEach(listing => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.innerHTML = `
+                <div class="landImg" style="background-image: url('${listing.imageUrl}')"></div>
+                <div class="cardContent">
+                    <div class="card-heading"><p>${listing.title}</p></div>
+                    <div class="cardDetails"><p>₹${listing.price}</p><p>${listing.area}</p></div>
+                    <div class="cardDetails"><p>${listing.type}</p></div>
+                </div>
+            `;
+            listingsContainer.appendChild(card);
+        });
+    } catch (err) {
+        console.error(err);
+        listingsContainer.innerHTML = "<p>Server error. Please try again later.</p>";
+    }
+});
+</script>

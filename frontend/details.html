@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details</title>
+    <link rel="stylesheet" href="details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" 
+          integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+
+<div class="header">
+    <a href="home.html" class="goBack"><i class="fa-solid fa-arrow-left"></i><h2> Details</h2></a>
+</div>
+
+<div class="listingDetails">
+    <div class="landheader">
+        <div class="header-text">
+            <div class="landtitle">
+                <h2 id="title">Property Title</h2>
+            </div>
+            <div class="header-info">
+                <p id="type"></p>
+                <p> | </p>
+                <p id="location"></p>
+            </div>
+        </div>
+        <div class="header-btn">
+            <div class="contactBtn">
+                <button id="contactOwner"><i class="fa-solid fa-phone"></i>  Contact Owner</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="landImg" id="image"></div>
+
+    <div class="tabs">
+        <a href="#bi" class="link active">Basic Information</a>
+        <a href="#oi" class="link">Owner Details</a>
+        <a href="#ei" class="link">Additional Information</a>
+        <a href="#di" class="link">Description</a>
+    </div>
+
+    <div class="basic-info" id="bi">
+        <div class="first-grid">
+            <div class="info first">
+                <p>Price</p>
+                <p id="price" class="v-info"></p>
+            </div>
+            <div class="info first">
+                <p>Area</p>
+                <p id="area" class="v-info"></p>
+            </div>
+        </div>
+        <div class="sec-grid">
+            <div class="info second">
+                <p>Soil</p>
+                <p id="soil" class="v-info"></p>
+            </div>
+            <div class="info second">
+                <p>Water</p>
+                <p id="water" class="v-info"></p>
+            </div>
+            <div class="info second">
+                <p>Legal</p>
+                <p id="legal" class="v-info"></p>
+            </div>
+        </div>    
+    </div>
+
+    <div class="owner-info" id="oi">
+        <div class="owner-grid">
+            <div class="personal-info">
+                <div class="o-info">
+                    <p>Owner</p>
+                    <p id="ownerName" class="v-info"></p>
+                </div>
+                <div class="o-info">
+                    <p>Contact</p>
+                    <p id="ownerContact" class="v-info"></p>
+                </div>
+                <div class="o-info">
+                    <p>Email</p>
+                    <p id="ownerEmail" class="v-info"></p>
+                </div>
+            </div>
+            <div class="land-info">
+                <div class="o-info">
+                    <p>Address</p>
+                    <p id="ownerAddress" class="v-info"></p>
+                </div>
+                <div class="o-info">
+                    <p>Remarks</p>
+                    <p id="ownerNotes" class="v-info"></p>
+                </div>
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <div class="extra-info" id="ei">
+        <div class="extraInfo">
+            <div class="e-info">
+                <div class="e-text">
+                    <p>Landmarks</p>
+                    <p id="landmarks" class="v-info"></p>
+                </div>
+                <div class="e-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+            </div>
+            <div class="e-info">
+                <div class="e-text">
+                    <p>Distance from road</p>
+                    <p id="roadDistance" class="v-info"></p>
+                </div>
+                <div class="e-icon">
+                    <i class="fa-solid fa-road"></i>
+                </div>
+            </div>
+            <div class="e-info">
+                <div class="e-text">
+                    <p>Environment</p>
+                    <p id="envNotes" class="v-info"></p>
+                </div>
+                <div class="e-icon">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+            </div>
+            <div class="e-info">
+                <div class="e-text">
+                    <p>Development Potential</p>
+                    <p id="devPotential" class="v-info"></p>
+                </div>
+                <div class="e-icon">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+            </div>
+        </div>
+        <div class="direction-box">
+            <div class="d-icon">
+                <i class="fa-solid fa-compass"></i>
+            </div>
+            <div class="d-text">
+                <p>Direction</p>
+                <p id="direction"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="description" id="di">
+        <div class="desc-box">
+            <div class="d-title">
+                <p>Description</p>
+            </div>
+            <div class="desc-info">
+                <p id="description"></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+        <div class="links">
+            <div class="properties">
+                <div class="f-Title">
+                    <p>Properties in Pune</p>
+                </div>
+                <div class="f-list">
+                    <a href="">Hinjewadi</a>
+                    <a href="">Baner</a>
+                    <a href="">Balewadi</a>
+                    <a href="">Ravet</a>
+                    <a href="">Talegaon</a>
+                    <a href="">Punawale</a>
+                    <a href="">Mulshi</a>
+                    <a href="">Bendewadi</a>
+                    <a href="">Kharadi</a>
+                    <a href="">Lavasa</a>
+                </div>
+            </div>
+            <div class="types">
+                <div class="f-Title">
+                    <p>Types of lands</p>
+                </div>
+                <div class="f-list">
+                    <a href="">Agricultural</a>
+                    <a href="">Residential</a>
+                    <a href="">Commercial</a>
+                </div>
+            </div>
+            <div class="fabout">
+                <div class="f-Title">
+                    <p>About Us</p>
+                </div>
+                <div class="f-list">
+                    <a href="">About LandSure</a>
+                    <a href="">Aim</a>
+                    <a href="">Contact us</a>
+                    <a href="">Terms and Conditions</a>
+                    <a href="">Founders</a>
+                    <a href="">Privacy Policy</a>
+                    <a href="">Technology used</a>
+                </div>
+            </div>
+            <div class="resources">
+                <div class="f-Title">
+                    <p>Resources</p>
+                </div>
+                <div class="f-list">
+                    <a href="">FAQs</a>
+                    <a href="">Blog</a>
+                    <a href="">Guides</a>
+                    <a href="">News & Updates</a>
+                </div>
+            </div>
+        </div>
+        <div class="tagAndSocials">
+            <div class="tag">
+                <p>We will make <i>sure</i> to keep your land safe!</p>
+            </div>
+            <div class="followUs">
+                <div class="followUsTitle">
+                    <p>Follow Us</p>
+                </div>
+                <div class="icons">
+                    <div class="icon">
+                        <a href=""><i class="fa-brands fa-instagram insta"></i></a>
+                    </div>
+                    <div class="icon">
+                        <a href=""><i class="fa-brands fa-x-twitter x"></i></a>
+                    </div>
+                    <div class="icon">
+                        <a href=""><i class="fa-brands fa-linkedin linkedIn"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 LandSure. All Rights Reserved</p>
+        </div>
+    </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    if (!id) {
+        document.body.innerHTML = "<p>No property selected.</p>";
+        return;
+    }
+
+    try {
+        const res = await fetch(`http://localhost:5000/api/listings/${id}`);
+        if (!res.ok) throw new Error("Listing not found");
+
+        const l = await res.json();
+
+        // Basic info
+        document.getElementById("title").textContent = l.title || "N/A";
+        document.getElementById("price").textContent = `₹${l.price || "N/A"}`;
+        document.getElementById("area").textContent = l.area || "N/A";
+        document.getElementById("type").textContent = l.type || "N/A";
+        document.getElementById("location").textContent = l.location || "N/A";
+        document.getElementById("direction").textContent = `${l.direction || "N/A"} Facing`;
+        document.getElementById("soil").textContent = l.soil || "N/A";
+        document.getElementById("water").textContent = l.water || "N/A";
+        document.getElementById("legal").textContent = l.legal || "N/A";
+
+        // Owner info
+        document.getElementById("ownerName").textContent = l.ownerName || "N/A";
+        document.getElementById("ownerContact").textContent = l.ownerContact || "N/A";
+        document.getElementById("ownerEmail").textContent = l.ownerEmail || "N/A";
+        document.getElementById("ownerAddress").textContent = l.ownerAddress || "N/A";
+        document.getElementById("ownerNotes").textContent = l.ownerNotes || "";
+
+        // Extra info
+        document.getElementById("landmarks").textContent = l.landmarks || "N/A";
+        document.getElementById("roadDistance").textContent = l.roadDistance || "N/A";
+        document.getElementById("envNotes").textContent = l.envNotes || "N/A";
+        document.getElementById("devPotential").textContent = l.devPotential || "N/A";
+
+        if (typeof l.latitude === "number" && typeof l.longitude === "number") {
+            var map = L.map("map").setView([l.latitude, l.longitude], 14);
+
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution: "© OpenStreetMap contributors"
+            }).addTo(map);
+
+            // Marker with Google Maps redirect on click
+            L.marker([l.latitude, l.longitude]).addTo(map)
+                .bindPopup(l.title || "Property Location")
+                .openPopup()
+                .on('click', function() {
+                    const gmapUrl = `https://www.google.com/maps?q=${l.latitude},${l.longitude}`;
+                    window.open(gmapUrl, '_blank'); // opens in new tab
+                });
+
+            // Optional: redirect on map click too
+            map.on('click', function() {
+                const gmapUrl = `https://www.google.com/maps?q=${l.latitude},${l.longitude}`;
+                window.open(gmapUrl, '_blank');
+            });
+        }
+
+        // Media & description
+        if (l.imageUrl) {
+    const imgUrl = l.imageUrl.startsWith("http")
+        ? l.imageUrl
+        : `http://localhost:5000${l.imageUrl}`;
+    document.getElementById("image").style.backgroundImage = `url('${imgUrl}')`;
+}
+
+        document.getElementById("description").textContent = l.description || "";
+
+        // Contact button
+        const contactBtn = document.getElementById("contactOwner");
+        contactBtn.addEventListener("click", () => {
+            alert(`Contact Owner at: ${l.ownerContact || "Not available"}`);
+        });
+
+    } catch (err) {
+        console.error(err);
+        document.body.innerHTML = "<p>Failed to load property details.</p>";
+    }
+
+});
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const tabs = document.querySelectorAll(".tabs .link");
+
+        tabs.forEach(tab => {
+            tab.addEventListener("click", (e) => {
+                e.preventDefault();
+
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove("active"));
+
+                // Add active class to clicked tab
+                tab.classList.add("active");
+
+                // Scroll to the corresponding section
+                const targetId = tab.getAttribute("href");
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: "smooth" });
+                }
+            });
+        });
+    });
+    const tabs = document.querySelector(".tabs");
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 690) { // adjust threshold as needed
+            tabs.classList.add("sticky-active");
+        } else {
+            tabs.classList.remove("sticky-active");
+        }
+    });
+</script>
+
+</body>
+</html>

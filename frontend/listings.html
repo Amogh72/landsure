@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Listings - LandSure</title>
+    <link rel="stylesheet" href="lisitngs.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <a href="home.html" class="goBack"><i class="fa-solid fa-arrow-left"></i><h2>All Listings</h2></a>
+    </div>
+
+    <div class="filtersAndListings">
+        <div class="filters">
+            <div class="filter-group">
+                <select id="location">
+                    <option value="">Location</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <select id="type">
+                    <option value="">Land Type</option>
+                    <option>Agricultural</option>
+                    <option>Residential</option>
+                    <option>Commercial</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <select id="priceRange">
+                    <option value="">Price Range</option>
+                    <option value="0-500000">Below ₹5 Lakh</option>
+                    <option value="500000-1000000">₹5 L – ₹10 L</option>
+                    <option value="1000000-2500000">₹10 L – ₹25 L</option>
+                    <option value="2500000-5000000">₹25 L – ₹50 L</option>
+                    <option value="5000000-10000000">₹50 L – ₹1 Cr</option>
+                    <option value="10000000-20000000">₹1 Cr – ₹2 Cr</option>
+                    <option value="20000000-50000000">₹2 Cr – ₹5 Cr</option>
+                    <option value="50000000">Above ₹5 Cr</option>
+                </select>
+
+            </div>
+            <div class="filter-group">
+                <select id="area">
+                    <option value="">Area</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <select id="direction">
+                    <option value="">Direction</option>
+                    <option>North</option>
+                    <option>East</option>
+                    <option>South</option>
+                    <option>West</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <select id="soil">
+                    <option value="">Soil Type</option>
+                    <option>Clay</option>
+                    <option>Sandy</option>
+                    <option>Loamy</option>
+                    <option>Black Soil</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <select id="water">
+                    <option value="">Water Access</option>
+                    <option>Well</option>
+                    <option>Borewell</option>
+                    <option>Canal</option>
+                    <option>River</option>
+                </select>
+            </div>
+            <div class="filter-btns">
+                <button class="apply-filters" id="applyFilters">Apply Filters</button>
+                <button class="reset-filters" id="resetFilters">Reset Filters</button>
+            </div>
+        </div>
+
+        <div class="listings"></div>
+    </div>
+
+    <div class="pagination">
+        <button id="prevPage">Prev</button>
+        <span id="pageInfo"></span>
+        <button id="nextPage">Next</button>
+    </div>
+
+    <script>
+        let allListingsData = [];
+        let filteredListings = [];
+        let savedIds = [];
+        let currentPage = 1;
+        const limit = 10;
+
+        function formatPrice(price) {
+            if (price >= 10000000) { // 1 crore and above
+                const crore = (price / 10000000).toFixed(2).replace(/\.00$/, "");
+                return `₹${crore} Cr`;
+            } else if (price >= 100000) { // 1 lakh and above
+                const lakh = (price / 100000).toFixed(2).replace(/\.00$/, "");
+                return `₹${lakh} Lakh`;
+            } else {
+                return `₹${price.toLocaleString("en-IN")}`; // below 1 lakh
+            }
+        }
+
+        // Render listings
+        function renderListings(listings) {
+            const container = document.querySelector(".listings");
+            container.innerHTML = "";
+
+            if (!listings.length) {
+                container.innerHTML = "<p>No listings found.</p>";
+                return;
+            }
+
+            listings.forEach(listing => {
+                const isSaved = savedIds.includes(listing._id);
+                const imgUrl = listing.imageUrl?.startsWith("http")
+                    ? listing.imageUrl
+                    : listing.imageUrl
+                        ? `http://localhost:5000${listing.imageUrl}`
+                        : "default.jpg";
+
+                const card = document.createElement("div");
+                card.classList.add("card");
+                card.innerHTML = `
+                    <div class="landImg" style="background-image: url('${imgUrl}')"></div>
+                    <div class="cardContent">
+                        <div class="cardHeadingandtype">
+                            <div class="card-heading"><p>${listing.title}</p></div>
+                            <div class="Landtype"><p>${listing.type}</p></div>
+                        </div>
+                        <div class="cardDetails">
+                            <p class="owner">Owner</p>
+                            <p>${listing.ownerName || "N/A"}</p>
+                        </div>
+                        <div class="cardDetails">
+                            <p class="areaOfLand">${listing.area}</p>
+                            <p>${formatPrice(listing.price)}</p>
+                        </div>
+                        <div class="cardbtnsAndVerify">
+                            <button class="contact" data-contact="${listing.ownerContact || "N/A"}">Contact Owner</button>
+                            <button class="save-btn" data-id="${listing._id}">
+                                <i class="${isSaved ? "fa-solid" : "fa-regular"} fa-bookmark"></i>
+                            </button>
+                            <div class="verified">
+                                <i class="fa-solid fa-circle-check"></i><p>LandSure</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Contact owner
+        document.addEventListener("click", e => {
+            const btn = e.target.closest(".contact");
+            if (!btn) return;
+            alert(`Contact Owner at: ${btn.dataset.contact}`);
+        });
+
+        // Save / Unsave
+        document.addEventListener("click", async e => {
+            const btn = e.target.closest(".save-btn");
+            if (!btn) return;
+
+            const listingId = btn.dataset.id;
+            const token = localStorage.getItem("token");
+            const accountType = localStorage.getItem("account_type");
+            if (!token) return alert("Please login first");
+            if (accountType !== "Buyer") return alert("Only buyers can save listings");
+
+            try {
+                const res = await fetch(`http://localhost:5000/api/users/toggle-save/${listingId}`, {
+                    method: "POST",
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    const icon = btn.querySelector("i");
+                    if (data.savedListings.includes(listingId)) {
+                        if (!savedIds.includes(listingId)) savedIds.push(listingId);
+                        icon.classList.remove("fa-regular");
+                        icon.classList.add("fa-solid");
+                    } else {
+                        savedIds = savedIds.filter(id => id !== listingId);
+                        icon.classList.remove("fa-solid");
+                        icon.classList.add("fa-regular");
+                    }
+                } else {
+                    alert(data.message);
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Server error");
+            }
+        });
+
+        // Populate location dynamically
+        function populateLocation(listings) {
+            const select = document.getElementById("location");
+            select.innerHTML = "<option value=''>Location</option>";
+            const locations = [...new Set(listings.map(l => l.location).filter(Boolean))];
+            locations.forEach(loc => {
+                const opt = document.createElement("option");
+                opt.value = loc;
+                opt.textContent = loc;
+                select.appendChild(opt);
+            });
+        }
+
+        const areaSelect = document.getElementById("area");
+        const typeSelect = document.getElementById("type");
+        typeSelect.addEventListener("change", () => {
+            areaSelect.value = "";
+        });
+
+        const areaOptions = {
+        Agricultural: [
+            { value: "", label: "Area" },
+            { value: "1-2 acres", label: "1–2 Acres" },
+            { value: "2-5 acres", label: "2–5 Acres" },
+            { value: "5+ acres", label: "5+ Acres" }
+        ],
+        Residential: [
+            { value: "", label: "Area" },
+            { value: "1 bhk", label: "1 BHK" },
+            { value: "2 bhk", label: "2 BHK" },
+            { value: "3+ bhk", label: "3+ BHK" },
+            { value: "0-500 sqm", label: "Up to 500 sq. m" },
+            { value: "500-1000 sqm", label: "500–1000 sq. m" },
+            { value: "1000+ sqm", label: "1000+ sq. m" }
+        ],
+        Commercial: [
+            { value: "", label: "Area" },
+            { value: "0-1000 sqm", label: "Up to 1000 sq. m" },
+            { value: "1000-5000 sqm", label: "1000 – 5000 sq. m" },
+            { value: "5000+ sqm", label: "5000+ sq. m" }
+        ]
+        };
+
+        // Update area options whenever land type changes
+        typeSelect.addEventListener("change", () => {
+        const selectedType = typeSelect.value;
+        areaSelect.innerHTML = "";
+        const options = areaOptions[selectedType] || [{ value: "", label: "Area" }];
+        options.forEach(opt => {
+            const o = document.createElement("option");
+            o.value = opt.value;
+            o.textContent = opt.label;
+            areaSelect.appendChild(o);
+        });
+        });
+
+        // Apply filters
+        function applyFilters() {
+            const location = document.getElementById("location").value.toLowerCase();
+            const type = document.getElementById("type").value.toLowerCase();
+            const priceRange = document.getElementById("priceRange").value;
+            const area = document.getElementById("area").value.toLowerCase();
+            const direction = document.getElementById("direction").value.toLowerCase();
+            const soil = document.getElementById("soil").value.toLowerCase();
+            const water = document.getElementById("water").value.toLowerCase();
+
+            filteredListings = allListingsData.filter(l => {
+                const priceOk = !priceRange || (() => {
+                const parts = priceRange.split("-").map(Number);
+                const min = parts[0];
+                const max = parts[1] || Infinity;
+                return l.price >= min && l.price <= max;
+            })();
+
+                const areaOk = !area || (() => {
+                    if (l.type?.toLowerCase() === "agricultural") {
+                        const areaValue = parseFloat(l.area);
+                        if (!areaValue) return false;
+                        if (area === "5+ acres") return areaValue >= 5;
+                        const [min, max] = area.split("-").map(a => parseFloat(a));
+                        return areaValue >= min && areaValue <= max;
+                    } 
+                    else if (l.type?.toLowerCase() === "residential") {
+                        const match = l.area?.toLowerCase().includes(area);
+                        return !!match;
+                    } 
+                    else if (l.type?.toLowerCase() === "commercial") {
+                        const areaValue = parseFloat(l.area);
+                        if (!areaValue) return false;
+                        if (area === "5000+ sqm") return areaValue >= 5000;
+                        const [min, max] = area.split("-").map(a => parseFloat(a));
+                        return areaValue >= min && areaValue <= max;
+                    }
+                    return true;
+                })();
+
+                return (!location || l.location.toLowerCase().includes(location)) &&
+                    (!type || (l.type && l.type.toLowerCase().includes(type))) &&
+                    priceOk &&
+                    areaOk &&
+                    (!direction || (l.direction && l.direction.toLowerCase().includes(direction))) &&
+                    (!soil || (l.soil && l.soil.toLowerCase().includes(soil))) &&
+                    (!water || (l.water && l.water.toLowerCase().includes(water)));
+            });
+
+            currentPage = 1;
+            renderListings(filteredListings.slice(0, limit));
+            updatePaginationButtons();
+        }
+
+        // Reset filters
+        function resetFilters() {
+            document.getElementById("location").value = "";
+            document.getElementById("type").value = "";
+            document.getElementById("priceRange").value = "";
+            document.getElementById("area").value = "";
+            document.getElementById("direction").value = "";
+            document.getElementById("soil").value = "";
+            document.getElementById("water").value = "";
+
+            filteredListings = [...allListingsData];
+            currentPage = 1;
+            renderListings(filteredListings.slice(0, limit));
+            updatePaginationButtons();
+        }
+
+        // Pagination helpers
+        function updatePaginationButtons() {
+            const total = filteredListings.length;
+            document.getElementById("pageInfo").textContent = currentPage;
+            document.getElementById("prevPage").disabled = currentPage === 1;
+            document.getElementById("nextPage").disabled = currentPage * limit >= total;
+        }
+
+        document.getElementById("prevPage").addEventListener("click", () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderListings(filteredListings.slice((currentPage - 1) * limit, currentPage * limit));
+                updatePaginationButtons();
+            }
+        });
+
+        document.getElementById("nextPage").addEventListener("click", () => {
+            if (currentPage * limit < filteredListings.length) {
+                currentPage++;
+                renderListings(filteredListings.slice((currentPage - 1) * limit, currentPage * limit));
+                updatePaginationButtons();
+            }
+        });
+
+        document.querySelector(".apply-filters").addEventListener("click", applyFilters);
+        document.querySelector(".reset-filters").addEventListener("click", resetFilters);
+
+        // Initial load
+        document.addEventListener("DOMContentLoaded", async () => {
+            try {
+                const res = await fetch(`http://localhost:5000/api/listings/all`);
+                const data = await res.json();
+                allListingsData = data.listings || [];
+                filteredListings = [...allListingsData];
+
+                // Load saved IDs if user logged in
+                const token = localStorage.getItem("token");
+                if (token) {
+                    const userRes = await fetch("http://localhost:5000/api/users/me", {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+                    if (userRes.ok) {
+                        const userData = await userRes.json();
+                        savedIds = userData.savedListings || [];
+                    }
+                }
+
+                populateLocation(allListingsData);
+                renderListings(filteredListings.slice(0, limit));
+                updatePaginationButtons();
+            } catch (err) {
+                console.error(err);
+                document.querySelector(".listings").innerHTML = "<p>Failed to load listings.</p>";
+            }
+        });
+    </script>
+
+</body>
+</html>

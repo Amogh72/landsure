@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandSure.com</title>
+    <link rel="icon" type="image/png" href="Logo-New-Photoroom.png">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" 
+          integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <script src="price.js"></script>
+    <div class="header">
+        <div class="navbar">
+            <div class="nav-logo">
+                <a href="home.html"><div class="logo"></div></a>
+            </div>
+            <div class="nav-buttons">
+                <a href="#newLands">Explore</a>
+                <a href="savedListing.html" id="savedListingsBtn">Saved</a>
+                <a href="#usp" id="aboutBtn">About</a>
+                <a href="" id="historyBtn">History</a>
+                <div class="logout">
+                    <a href="profile.html" id="profileBtn"><i class="fa-solid fa-user" style="color: black;"></i> Profile</a>
+                    <button id="logoutBtn" style="display: none;">Logout</button>
+                </div>
+            </div>
+        </div>
+        <div class="btn_one">
+            <label for="check">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+        </div>
+
+    <!-- Sidebar Menu -->
+        <input type="checkbox" id="check" />
+        <div class="sidebar_menu">
+            <div class="btn_two">
+            <label for="check">
+                <i class="fa-solid fa-xmark"></i>
+            </label>
+            </div>
+            <div class="menu">
+            <ul>
+                <li><a href="#newLands">Explore</a></li>
+                <li><a href="savedListing.html" id="savedListingsBtn">Saved</a></li>
+                <li><a href="" id="aboutBtn">About</a></li>
+                <li><a href="" id="historyBtn">History</a></li>
+                <li><a href="" id="profileBtn"><i class="fa-solid fa-user" style="color: black;"></i> Profile</a></li>
+                <li><button id="logoutBtn" class="logout">Logout</button></li>
+            </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <img src="hero.png" class="hero-img" alt="Hero Image" />
+        <div class="hero-controls">
+            <div class="search">
+                <input type="text" class="prop-search" placeholder="Enter location">
+                <a href="" class="search-icon" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <div class="suggestions"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="usp" id="usp">
+        <div class="usp-img"></div>
+        <div class="usp-info">
+            <div class="usp-title">
+                <p>About LandSure</p>
+            </div>
+            <div class="aboutUs">
+                <p>At LandSure, we make property transactions safe, simple, and transparent. By verifying land documents, recording ownership digitally, and allowing even shared ownership of land, we reduce fraud and disputes. Built with a focus on India’s real estate challenges, LandSure ensures that every property deal is trustworthy and hassle-free.</p>
+            </div>
+            <div class="usp-btn">
+                <a href="bkm.html"><button class="btn-km">Know More</button></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="working">
+        <div class="workingTitle">
+            <h2>Workflow</h2>
+        </div>
+        <div class="w-boxes">
+            <div class="upload w-box">
+                <div class="uploadImg w-img"></div>
+                <div class="uploadInfo w-info">
+                    <p>Sellers upload property papers securely.</p>
+                </div>
+            </div>
+            <div class="ocr w-box">
+                <div class="ocrImg w-img"></div>
+                <div class="ocrInfo w-info">
+                    <p>OCR scans and checks with government records.</p>
+                </div>
+            </div>
+            <div class="verified w-box">
+                <div class="verifiedImg w-img"></div>
+                <div class="verifiedInfo w-info">
+                    <p>Verified land is stored as a blockchain token.</p>
+                </div>
+            </div>
+            <div class="listed w-box">
+                <div class="listedImg w-img"></div>
+                <div class="listedInfo w-info">
+                    <p>Your property appears as a trusted listing.</p>
+                </div>
+            </div>
+            <div class="ownership w-box">
+                <div class="ownershipImg w-img"></div>
+                <div class="ownershipInfo w-info">
+                    <p>When sold, ownership transfers safely on blockchain.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="featuredLands">
+        <div class="featuredLands-title">
+            <div class="fl-title">
+                <h2>Featured Listings</h2>
+            </div>
+            <div class="fl-tag">
+                <p>Check out the most popular, verified and recommended listings.</p>
+            </div>
+        </div>
+        <div class="fl-wrapper">
+            <div class="fl-card"></div>
+            <div class="featured-pagination">
+                <button id="prevFeatured" class="flprev"><</button>
+                <button id="nextFeatured" class="flnext">></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="lands" id="newLands">
+        <div class="recentListingsTitle">
+            <h2>Recent Listings</h2>
+            <a href="listings.html" class="smLink">See More<i class="fa-solid fa-arrow-right sm"></i></a>
+        </div>
+        <div class="listings"></div>
+
+        <div class="pagination">
+            <button id="prevPage">Prev</button>
+            <span id="pageInfo"></span>
+            <button id="nextPage">Next</button>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="s-box totalLands">
+            <div class="s-content">
+                <div class="s-icon">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="s-text">
+                    <div class="s-info">
+                        <p id="landsVerified">0</p>
+                    </div>
+                    <p>Lands verified</p>
+                </div>
+            </div>
+        </div>
+        <div class="s-box hoursReq">
+            <div class="s-content">
+                <div class="s-icon">
+                    <i class="fa-regular fa-clock"></i>
+                </div>
+                <div class="s-text">
+                    <div class="s-info">
+                        <p>24h</p>
+                    </div>
+                    <p>Paper Verification</p>
+                </div>
+            </div>
+        </div>
+        <div class="s-box blockchainSecure">
+            <div class="s-content">
+                <div class="s-icon">
+                    <i class="fa-solid fa-shield"></i>
+                </div>
+                <div class="s-text">
+                    <div class="s-info">
+                        <p>100%</p>
+                    </div>
+                    <p>Blockchain Secure</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq">
+        <div class="gfaq">
+            <div class="faqTitle">
+                <h2>General FAQs</h2>
+            </div>
+            <div class="faqboxes">
+                <div class="faqBox">
+                    <p class="faqQ">What is LandSure?</p>
+                    <p class="faqA">LandSure is a platform where buyers and sellers can connect to list and discover properties easily.</p>
+                </div>
+                <div class="faqBox">
+                    <p class="faqQ">Do I need an account to use LandSure?</p>
+                    <p class="faqA">You can browse listings without an account, but you'll need to register to save and buy properties or create listings.</p>
+                </div>
+            </div>
+        </div>
+        <div class="bfaq">
+            <div class="faqTitle">
+                <h2>Buyer FAQs</h2>
+            </div>
+            <div class="faqboxes">
+                <div class="faqBox">
+                    <p class="faqQ">How do I search for properties?</p>
+                    <p class="faqA">Use the search bar to filter by location, type, or price range.</p>
+                </div>
+                <div class="faqBox">
+                    <p class="faqQ">Can I contact the seller directly?</p>
+                    <p class="faqA">Yes, after logging in, you can view the seller's contact details on the property page.</p>
+                </div>
+                <div class="faqBox">
+                    <p class="faqQ">Are the listed lands verified?</p>
+                    <p class="faqA">Yes. Every land listing added to LandSure goes through a verification process.</p>
+                </div>
+                <div class="faqBox">
+                    <p class="faqQ">Do I need to pay anything to browse listings?</p>
+                    <p class="faqA">No. Browsing and searching for lands on LandSure is completely free.</p>
+                </div>
+            </div>
+        </div>
+        <div class="sfaq">
+            <div class="faqTitle">
+                <h2>Seller FAQs</h2>
+            </div>
+            <div class="faqboxes">
+                <div class="faqBox">
+                    <p class="faqQ">How do I sell my property?</p>
+                    <p class="faqA">After registering as a seller, click “Add Listing” and fill in the required details (title, location, price, images, etc.).</p>
+                </div>
+                <div class="faqBox">
+                    <p class="faqQ">Is there a fee for listing my property?</p>
+                    <p class="faqA">Currently listing is free (you can later decclasse if you want to add premium options like featured listings).</p>
+                </div>
+                <div class="faqBox">
+                    <p class="faqQ">Can I edit or remove my listing?</p>
+                    <p class="faqA">Yes, you can manage your listings anytime from your account dashboard.</p>
+                </div>
+                <div class="faqBox">
+                    <p class="faqQ">How long does it take for my land listing to go live?</p>
+                    <p class="faqA">Once you submit your listing, it is verified using OCR and basic checks. Approved listings usually go live within a few minutes.</p>
+                </div>
+            </div>
+        </div>
+        <div class="tfaq">
+            <div class="faqTitle">
+                <h2>Technical & Security FAQs</h2>
+            </div>
+            <div class="faqboxes">
+                <div class="faqBox">
+                    <p class="faqQ">How does blockchain help in real estate?</p>
+                    <p class="faqA">Blockchain can provclasse secure and transparent property records. In future updates, LandSure plans to integrate blockchain for tamper-proof ownership history and transaction verification.</p>
+                </div>
+                <div class="faqBox">
+                    <p class="faqQ">How does the verification process work?</p>
+                    <p class="faqA">Every uploaded land document is scanned using OCR (Optical Character Recognition) to extract key details like owner name, survey number, and location. These details are then cross-checked with government records and verified for authenticity before the listing is approved.</p>
+                </div>
+                <div class="faqBox" id="last">
+                    <p class="faqQ">Is my government ID safe when I upload it?</p>
+                    <p class="faqA">Yes. IDs are encrypted and only used for verification purposes. We do not share or sell this data</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.querySelectorAll(".faqQ").forEach(q => {
+        q.addEventListener("click", () => {
+            const answer = q.nextElementSibling;
+            q.classList.toggle("active");
+
+            if (answer.style.maxHeight) {
+                answer.style.maxHeight = null;
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + "px"; 
+            }
+        });
+    });
+    </script>
+
+    <div class="footer">
+        <div class="links">
+            <div class="properties">
+                <div class="f-Title">
+                    <p>Properties in Pune</p>
+                </div>
+                <div class="f-list">
+                    <a href="">Hinjewadi</a>
+                    <a href="">Baner</a>
+                    <a href="">Balewadi</a>
+                    <a href="">Ravet</a>
+                    <a href="">Talegaon</a>
+                    <a href="">Punawale</a>
+                    <a href="">Mulshi</a>
+                    <a href="">Bendewadi</a>
+                    <a href="">Kharadi</a>
+                    <a href="">Lavasa</a>
+                </div>
+            </div>
+            <div class="types">
+                <div class="f-Title">
+                    <p>Types of lands</p>
+                </div>
+                <div class="f-list">
+                    <a href="">Agricultural</a>
+                    <a href="">Residential</a>
+                    <a href="">Commercial</a>
+                </div>
+            </div>
+            <div class="fabout">
+                <div class="f-Title">
+                    <p>About Us</p>
+                </div>
+                <div class="f-list">
+                    <a href="">About LandSure</a>
+                    <a href="">Aim</a>
+                    <a href="">Contact us</a>
+                    <a href="">Terms and Conditions</a>
+                    <a href="">Founders</a>
+                    <a href="">Privacy Policy</a>
+                    <a href="">Technology used</a>
+                </div>
+            </div>
+            <div class="resources">
+                <div class="f-Title">
+                    <p>Resources</p>
+                </div>
+                <div class="f-list">
+                    <a href="">FAQs</a>
+                    <a href="">Blog</a>
+                    <a href="">Guides</a>
+                    <a href="">News & Updates</a>
+                </div>
+            </div>
+        </div>
+        <div class="feedback">
+            <div class="feedbackP">
+                <p>Feedback</p>
+            </div>
+            <div class="feedbackForm">
+                <form id="feedbackForm">
+                    <div class="inputbox">
+                        <input type="email" id="emailBox" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="inputbox">
+                        <textarea id="feedbackText" name="feedback" placeholder="Feedback" required></textarea>
+                    </div>
+                    <button type="submit" class="fbsubmit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="tagAndSocials">
+            <div class="tag">
+                <p>We will make <i>sure</i> to keep your land safe!</p>
+            </div>
+            <div class="followUs">
+                <div class="followUsTitle">
+                    <p>Follow Us</p>
+                </div>
+                <div class="icons">
+                    <div class="icon">
+                        <a href=""><i class="fa-brands fa-instagram insta"></i></a>
+                    </div>
+                    <div class="icon">
+                        <a href=""><i class="fa-brands fa-x-twitter x"></i></a>
+                    </div>
+                    <div class="icon">
+                        <a href=""><i class="fa-brands fa-linkedin linkedIn"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 LandSure. All Rights Reserved</p>
+        </div>
+    </div>
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const listingsContainer = document.querySelector(".listings");
+    const prevBtn = document.querySelector("#prevPage");
+    const nextBtn = document.querySelector("#nextPage");
+    const pageInfo = document.querySelector("#pageInfo");
+
+    const logoutBtn = document.querySelector("#logoutBtn");
+    const profileBtn = document.querySelector("#profileBtn");
+    const savedListingsBtn = document.querySelector("#savedListingsBtn");
+    const historyBtn = document.querySelector("#historyBtn");
+
+    const featuredContainer = document.querySelector(".fl-card");
+    const prevFeaturedBtn = document.querySelector("#prevFeatured");
+    const nextFeaturedBtn = document.querySelector("#nextFeatured");
+
+    let currentPage = 1;
+    const perPage = 4;
+    let allListings = [];
+    let savedIds = [];
+    let featuredListings = [];
+    let featuredPage = 1;
+
+    const token = localStorage.getItem("token");
+    const accountType = localStorage.getItem("account_type");
+    const expiry = localStorage.getItem("token_expiry");
+
+    // Auto logout if token expired
+    if (token && expiry && Date.now() > parseInt(expiry)) {
+        localStorage.clear();
+        alert("Your session has expired. Please login again.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    // Redirect sellers away from home.html
+    if (accountType === "Seller") {
+        alert("Sellers cannot access this page. Redirecting to seller dashboard.");
+        window.location.href = "seller.html";
+        return;
+    }
+
+    // Navbar
+    function updateNavbar() {
+        const username = localStorage.getItem("username");
+        if (token) {
+            profileBtn.innerHTML = `<i class="fa-solid fa-user" style="color: black;"></i> Hi, ${username}`;
+            logoutBtn.style.display = "inline-block";
+            logoutBtn.classList.add("logout");
+            savedListingsBtn.style.display = "inline-block";
+            historyBtn.style.display = "inline-block";
+        } else {
+            profileBtn.textContent = "Login";
+            profileBtn.href = "login.html";
+            logoutBtn.style.display = "none";
+            savedListingsBtn.style.display = "none";
+            historyBtn.style.display = "none";
+        }
+    }
+
+    logoutBtn.addEventListener("click", () => {
+        localStorage.clear();
+        updateNavbar();
+        window.location.href = "login.html";
+    });
+
+    function checkTokenExpiry() {
+        const expiry = localStorage.getItem("token_expiry");
+        if (!expiry) return;
+        if (Date.now() > parseInt(expiry)) {
+            localStorage.clear();
+            alert("Your session has expired. Please login again.");
+            window.location.href = "login.html";
+        }
+    }
+
+    updateNavbar();
+    checkTokenExpiry();
+
+    function formatPrice(price) {
+        if (price >= 10000000) return `₹${(price / 10000000).toFixed(2)} Cr`;
+        if (price >= 100000) return `₹${(price / 100000).toFixed(2)} L`;
+        return `₹${price}`;
+    }
+
+    async function loadFeaturedAndRecent() {
+        try {
+            const res = await fetch("http://localhost:5000/api/listings/featured");
+            const data = await res.json();
+            featuredListings = data.featured;
+            allListings = data.recent;
+
+            // Fetch saved listings for logged-in user
+            if (token) {
+                const userRes = await fetch("http://localhost:5000/api/users/me", {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                if (userRes.ok) {
+                    const userData = await userRes.json();
+                    savedIds = userData.savedListings;
+                }
+            }
+
+            renderFeatured();
+            renderListings();
+        } catch (err) {
+            console.error(err);
+            featuredContainer.innerHTML = "<p>Failed to load featured listings.</p>";
+            listingsContainer.innerHTML = "<p>Failed to load recent listings.</p>";
+        }
+    }
+
+    function renderListings() {
+        listingsContainer.innerHTML = "";
+        const start = (currentPage - 1) * perPage;
+        const pageListings = allListings.slice(start, start + perPage);
+
+        pageListings.forEach(listing => {
+            const isSaved = savedIds.includes(listing._id);
+            const imgUrl = listing.imageUrl?.startsWith("http")
+                ? listing.imageUrl
+                : `http://localhost:5000${listing.imageUrl}`;
+
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.innerHTML = `
+                <div class="landImg" style="background-image: url('${imgUrl}')"></div>
+                <button class="save-btn" data-id="${listing._id}">
+                    <i class="${isSaved ? "fa-solid" : "fa-regular"} fa-bookmark"></i>
+                </button>
+                <div class="cardContent">
+                    <div class="card-heading"><p>${listing.title}</p></div>
+                    <div class="cardDetails"><p>${formatPrice(listing.price)}</p><p>${listing.area}</p></div>
+                    <div class="cardDetails"><p>${listing.type}</p></div>
+                    <div class="cardbtns">
+                        <button class="view" data-id="${listing._id}">View Details</button>
+                        <button class="contact" data-contact="${listing.ownerContact || "Not available"}">Contact Owner</button>
+                    </div>
+                </div>
+            `;
+            listingsContainer.appendChild(card);
+        });
+
+        // Add event listeners for all contact buttons
+        const contactBtns = listingsContainer.querySelectorAll(".contact");
+        contactBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                alert(`Contact Owner at: ${btn.dataset.contact}`);
+            });
+        });
+
+        const totalPages = Math.ceil(allListings.length / perPage);
+        pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+        prevBtn.disabled = currentPage === 1;
+        nextBtn.disabled = currentPage === totalPages;
+    }
+
+    prevBtn.addEventListener("click", () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderListings();
+        }
+    });
+
+    nextBtn.addEventListener("click", () => {
+        const totalPages = Math.ceil(allListings.length / perPage);
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderListings();
+        }
+    });
+
+    function renderFeatured() {
+        featuredContainer.innerHTML = "";
+        const listing = featuredListings[featuredPage - 1];
+        if (!listing) return;
+        const isSaved = savedIds.includes(listing._id);
+
+        const imgUrl = listing.imageUrl?.startsWith("http")
+            ? listing.imageUrl
+            : `http://localhost:5000${listing.imageUrl}`;
+
+        featuredContainer.innerHTML = `
+            <div class="fl-CardInfo">
+                <div class="fl-cardContent">
+                    <div class="fl-card-heading"><p>${listing.title}</p></div>
+                    <div class="fl-owner"><i class="fa-solid fa-user" style="color: black;"></i><p>${listing.ownerName}</p></div>
+                    <div class="fl-cardDetails">
+                        <p id="fl-price">${formatPrice(listing.price)}</p>
+                        <p id="fl-area">${listing.area}</p>
+                    </div>
+                    <div class="fl-cardbtns">
+                        <button class="view" data-id="${listing._id}">View Details</button>
+                        <button class="save-btn" data-id="${listing._id}">
+                            <i class="${isSaved ? "fa-solid" : "fa-regular"} fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="fl-CardImg" style="background-image: url('${imgUrl}')"></div>
+        `;
+        
+        prevFeaturedBtn.disabled = featuredPage === 1;
+        nextFeaturedBtn.disabled = featuredPage === featuredListings.length;
+    }
+
+    prevFeaturedBtn.addEventListener("click", () => {
+        if (featuredPage > 1) {
+            featuredPage--;
+            renderFeatured();
+        }
+    });
+
+    nextFeaturedBtn.addEventListener("click", () => {
+        if (featuredPage < featuredListings.length) {
+            featuredPage++;
+            renderFeatured();
+        }
+    });
+
+    // View details redirect
+    document.addEventListener("click", (e) => {
+        const viewBtn = e.target.closest(".view");
+        if (!viewBtn) return;
+        const listingId = viewBtn.dataset.id;
+        if (!listingId) return;
+        window.location.href = `details.html?id=${listingId}`;
+    });
+
+    // Save / unsave
+    document.addEventListener("click", async (e) => {
+        const btn = e.target.closest(".save-btn");
+        if (!btn) return;
+        const listingId = btn.dataset.id;
+        if (!token) return alert("Please login first");
+        if (accountType !== "Buyer") return alert("Only buyers can save listings");
+
+        try {
+            const res = await fetch(`http://localhost:5000/api/users/toggle-save/${listingId}`, {
+                method: "POST",
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const data = await res.json();
+            if (res.ok) {
+                if (data.savedListings.includes(listingId)) {
+                    savedIds.push(listingId);
+                    btn.innerHTML = `<i class="fa-solid fa-bookmark"></i>`;
+                } else {
+                    savedIds = savedIds.filter(id => id !== listingId);
+                    btn.innerHTML = `<i class="fa-regular fa-bookmark"></i>`;
+                }
+            } else alert(data.message);
+        } catch (err) {
+            console.error(err);
+            alert("Server error");
+        }
+    });
+
+    // Animate stats
+    function animateCounter(el, finalNumber, duration = 1500) {
+        let count = 0;
+        const stepTime = Math.abs(Math.floor(duration / finalNumber));
+        const timer = setInterval(() => {
+            count++;
+            el.textContent = `${count}+`;
+            if (count >= finalNumber) clearInterval(timer);
+        }, stepTime);
+    }
+
+    async function loadStats() {
+        const statsSection = document.querySelector(".totalLands");
+        const landsEl = document.getElementById("landsVerified");
+        try {
+            const res = await fetch("http://localhost:5000/api/listings/count");
+            const data = await res.json();
+            const totalLands = data.total;
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(landsEl, totalLands);
+                        observer.unobserve(statsSection);
+                    }
+                });
+            }, { threshold: 0.5 });
+            observer.observe(statsSection);
+        } catch (err) { console.error(err); }
+    }
+
+const searchInput = document.querySelector(".prop-search");
+const searchBtn = document.querySelector("#searchBtn");
+const suggestionsBox = document.querySelector(".suggestions");
+
+// Debounce helper
+function debounce(func, delay) {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), delay);
+  };
+}
+
+// Fetch live suggestions
+async function fetchSuggestions(query) {
+  if (!query) {
+    suggestionsBox.innerHTML = "";
+    suggestionsBox.style.display = "none";  // hide if empty
+    return;
+  }
+  try {
+    const res = await fetch(`http://localhost:5000/api/listings/search-suggestions?q=${query}`);
+    const locations = await res.json();
+
+    if (!Array.isArray(locations) || locations.length === 0) {
+      suggestionsBox.innerHTML = `<div class="suggestion-item no-suggestions">No results found</div>`;
+      suggestionsBox.style.display = "block";
+      return;
+    }
+
+    suggestionsBox.innerHTML = locations
+      .map(loc => `<div class="suggestion-item" data-location="${loc}">${loc}</div>`)
+      .join("");
+
+    suggestionsBox.style.display = "block"; // show suggestions
+
+  } catch (err) {
+    console.error("Error fetching suggestions:", err);
+  }
+}
+
+// Handle typing
+searchInput.addEventListener(
+  "input",
+  debounce((e) => {
+    fetchSuggestions(e.target.value.trim());
+  }, 300)
+);
+
+// Handle suggestion click
+suggestionsBox.addEventListener("click", (e) => {
+  const item = e.target.closest(".suggestion-item");
+  if (!item || !item.dataset.location) return;
+  const location = item.dataset.location;
+  suggestionsBox.style.display = "none"; // hide after click
+  window.location.href = `search.html?q=${location}`;
+});
+
+searchBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const query = searchInput.value.trim();
+  if (!query) return;
+  window.location.href = `search.html?q=${query}`;
+});
+
+    // Init
+    loadFeaturedAndRecent();
+    loadStats();
+});
+</script>
+</body>
+</html>

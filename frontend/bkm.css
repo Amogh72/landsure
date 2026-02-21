@@ -1,0 +1,472 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+                 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+.header {
+    width: 100%;
+    padding: 20px 0 20px 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.goBack {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 50px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+}
+
+.goBack i {
+    font-size: 1.5rem;
+}
+
+.goBack:hover {
+    color: #656363;
+}
+
+.hero-section, .frauds {
+    width: 1076px;
+    height: 548px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    margin-bottom: 100px;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    background-image: url("about.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.about-section {
+    width: 1076px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+}
+
+.aim {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.aim-img {
+    width: 50%;
+}
+
+.ai {
+    flex: 1;
+    min-height: 300px;
+    border-radius: 5px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    position: relative;      
+    overflow: hidden;        
+}
+
+.ai::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("aim.png");
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;
+}
+
+.ai:hover::before {
+    transform: scale(1.1);  
+}
+
+.aim-info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.desc {
+    color: #555;
+    padding: 0 10px;
+}
+
+.technical {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 70px;
+}
+
+.Ttitle {
+    width: 100%;
+    height: 40px;
+    background-image: url("TECHNICAL\ INSIGHT.png");
+    margin-bottom: 30px;
+    border-radius: 5px;
+    background-size: contain;
+}
+
+.boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.box {
+    width: 28%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    transition: transform 0.2s ease-in;
+}
+
+.box:hover {
+    transform: translateY(-5px);
+}
+
+.btitle {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.bdesc {
+    font-size: 0.9rem;
+}
+
+.market {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    margin-bottom: 100px;
+}
+
+.m-box {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(247, 247, 247);
+    margin-bottom: 15px;
+}
+
+.a, .c {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.r {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.img-box, .img-box2, .img-box3 {
+    width: 30%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.img-box {
+    background-image: url("https://images.pexels.com/photos/974314/pexels-photo-974314.jpeg");
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.img-box2 {
+    background-image: url("residential.avif");
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.img-box3 {
+    background-image: url("com.jpg");
+    background-position: center;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.insight-box {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: start;
+    padding: 0 50px;
+}
+
+.insight-box .desc {
+    padding: 0px;
+    font-size: 0.8rem;
+}
+
+.Mtitle {
+    width: 100%;
+    height: 40px;
+    background-image: url("market\ INSIGHT.png");
+    margin-bottom: 30px;
+    border-radius: 5px;
+    background-size: contain;
+}
+
+
+.frauds {
+    margin-bottom: 20px;
+}
+
+.f-img {
+    width: 100%;
+    height: 100%;
+    background-image: url("fraud.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.fraud-stats {
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  background-color: #f7f7f7;
+  margin-bottom: 100px;
+}
+
+.stats-box {
+  height: 100px;
+  flex: 1 1 25%;
+  padding: 25px 20px;
+  text-align: center;
+  border-right: 1px solid #ddd;
+}
+
+.stats-box:last-child {
+  border-right: none;
+}
+
+.s-number {
+    font-size: 1.5rem;
+    font-weight: 500;
+    height: 50%;
+    margin-bottom: 5px;
+    background: linear-gradient(90deg, rgb(141, 141, 249), #4e4376);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s-info {
+    height: 50%;
+    font-size: 0.8rem;
+    max-width: 250px;
+}
+
+.footer {
+    width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    padding: 30px 60px 30px 60px;
+    margin-top: 30px;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ccc;
+}
+
+.f-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.f-list a {
+    transition: transform 0.1s ease-in, color 0.2s ease-in;
+}
+
+.f-list a:hover {
+    color: #007bff;
+    transform: translateX(3px);
+}
+
+.f-Title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.48rem;
+}
+
+.f-list a {
+    text-decoration: none;
+    color: #444;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.feedback {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 30px;
+}
+
+.feedbackP {
+    width: 50%;
+    font-size: 2rem;
+}
+
+.feedbackForm {
+    width: 50%;
+}
+
+.inputbox {
+    position: relative;
+    width: 100%;
+}
+
+.inputbox input, .inputbox textarea {
+    width: 100%;
+    background: #fafafa;
+    border: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #444;
+    padding: 10px;
+}
+
+.inputbox input {
+    margin-bottom: 20px;
+}
+
+.inputbox textarea {
+    min-height: 120px;
+    resize: none;         
+    overflow-wrap: break-word;  
+    white-space: pre-wrap; 
+    margin-bottom: 16px;
+}
+
+.inputbox input:focus, .inputbox textarea:focus {
+    outline: none;
+    border: 1px solid rgb(100, 100, 241);
+    box-shadow: 0 0 8px rgba(100, 100, 241, 0.2);
+    transition: 0.2s ease-in-out;
+}
+
+.fbsubmit-btn {
+    flex: 1;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 45px;
+    background-color: rgb(84, 84, 252);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0 10px 0 10px;
+    transition: 0.2s ease-in;
+}
+
+.fbsubmit-btn:hover {
+    background: rgb(141, 141, 249);
+    color: #444;
+}
+
+.tagAndSocials {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ccc;
+}
+
+.tag {
+    font-size: 2rem;
+    width: 60%;
+}
+
+.tag i {
+    color: rgb(100, 100, 241);
+}
+
+.followUs {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.icons {
+    display: flex;
+    gap: 5px;
+}
+
+.icons i {
+    font-size: 2rem;
+    color: #555;
+    transition: color 0.2s ease-in-out;
+}
+
+.icons .insta:hover {
+    color: #d62976;
+}
+
+.icons .x:hover {
+    color: black;
+}
+
+.icons .linkedIn:hover {
+    color: #0A66C2;
+}
+
+.copyright {
+    margin-top: 30px;
+    text-align: center;
+}

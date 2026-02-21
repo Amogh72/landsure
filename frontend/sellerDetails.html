@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Property Details</title>
+  <link rel="stylesheet" href="sellerDetails.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <div class="header"> 
+    <a href="seller.html" class="goBack"
+      ><i class="fa-solid fa-arrow-left"></i><h2> Details</h2></a
+    >
+  </div>
+
+  <div class="listingDetails">
+    <div class="landheader">
+      <div class="header-text">
+        <div class="landtitle">
+          <h2 id="title">Property Title</h2>
+        </div>
+        <div class="header-info">
+          <p id="type"></p>
+          <p id="location"></p>
+        </div>
+      </div>
+      <div class="header-btn">
+        <button id="editListing" class="edit-btn">
+          <i class="fa-solid fa-pen"></i> Edit
+        </button>
+        <button id="deleteListing" class="delete-btn">
+          <i class="fa-solid fa-trash"></i> Delete
+        </button>
+      </div>
+    </div>
+
+    <div class="landImg" id="image"></div>
+
+    <div class="tabs">
+      <a href="#bi" class="link active">Basic Information</a>
+      <a href="#oi" class="link">Owner Details</a>
+      <a href="#ei" class="link">Additional Information</a>
+      <a href="#di" class="link">Description</a>
+    </div>
+
+    <div class="basic-info" id="bi">
+      <div class="first-grid">
+        <div class="info first">
+          <p>Price</p>
+          <p id="price" class="v-info"></p>
+        </div>
+        <div class="info first">
+          <p>Area</p>
+          <p id="area" class="v-info"></p>
+        </div>
+      </div>
+      <div class="sec-grid">
+        <div class="info second">
+          <p>Soil</p>
+          <p id="soil" class="v-info"></p>
+        </div>
+        <div class="info second">
+          <p>Water</p>
+          <p id="water" class="v-info"></p>
+        </div>
+        <div class="info second">
+          <p>Legal</p>
+          <p id="legal" class="v-info"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="owner-info" id="oi">
+      <div class="owner-grid">
+        <div class="personal-info">
+          <div class="o-info">
+            <p>Owner</p>
+            <p id="ownerName" class="v-info"></p>
+          </div>
+          <div class="o-info">
+            <p>Contact</p>
+            <p id="ownerContact" class="v-info"></p>
+          </div>
+          <div class="o-info">
+            <p>Email</p>
+            <p id="ownerEmail" class="v-info"></p>
+          </div>
+        </div>
+        <div class="land-info">
+          <div class="o-info">
+            <p>Address</p>
+            <p id="ownerAddress" class="v-info"></p>
+          </div>
+          <div class="o-info">
+            <p>Remarks</p>
+            <p id="ownerNotes" class="v-info"></p>
+          </div>
+        </div>
+      </div>
+      <div id="map"></div>
+    </div>
+
+    <div class="extra-info" id="ei">
+      <div class="extraInfo">
+        <div class="e-info">
+          <div class="e-text">
+            <p>Landmarks</p>
+            <p id="landmarks" class="v-info"></p>
+          </div>
+          <div class="e-icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+        </div>
+        <div class="e-info">
+          <div class="e-text">
+            <p>Distance from road</p>
+            <p id="roadDistance" class="v-info"></p>
+          </div>
+          <div class="e-icon">
+            <i class="fa-solid fa-road"></i>
+          </div>
+        </div>
+        <div class="e-info">
+          <div class="e-text">
+            <p>Environment</p>
+            <p id="envNotes" class="v-info"></p>
+          </div>
+          <div class="e-icon">
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+        </div>
+        <div class="e-info">
+          <div class="e-text">
+            <p>Development Potential</p>
+            <p id="devPotential" class="v-info"></p>
+          </div>
+          <div class="e-icon">
+            <i class="fa-solid fa-building"></i>
+          </div>
+        </div>
+      </div>
+      <div class="direction-box">
+        <div class="d-icon">
+          <i class="fa-solid fa-compass"></i>
+        </div>
+        <div class="d-text">
+          <p>Direction</p>
+          <p id="direction"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="description" id="di">
+      <div class="desc-box">
+        <div class="d-title">
+          <p>Description</p>
+        </div>
+        <div class="desc-info">
+          <p id="description"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+        <div class="links">
+            <div class="properties">
+                <div class="f-Title">
+                    <p>Properties in Pune</p>
+                </div>
+                <div class="f-list">
+                    <a href="">Hinjewadi</a>
+                    <a href="">Baner</a>
+                    <a href="">Balewadi</a>
+                    <a href="">Ravet</a>
+                    <a href="">Talegaon</a>
+                    <a href="">Punawale</a>
+                    <a href="">Mulshi</a>
+                    <a href="">Bendewadi</a>
+                    <a href="">Kharadi</a>
+                    <a href="">Lavasa</a>
+                </div>
+            </div>
+            <div class="types">
+                <div class="f-Title">
+                    <p>Types of lands</p>
+                </div>
+                <div class="f-list">
+                    <a href="">Agricultural</a>
+                    <a href="">Residential</a>
+                    <a href="">Commercial</a>
+                </div>
+            </div>
+            <div class="fabout">
+                <div class="f-Title">
+                    <p>About Us</p>
+                </div>
+                <div class="f-list">
+                    <a href="">About LandSure</a>
+                    <a href="">Aim</a>
+                    <a href="">Contact us</a>
+                    <a href="">Terms and Conditions</a>
+                    <a href="">Founders</a>
+                    <a href="">Privacy Policy</a>
+                    <a href="">Technology used</a>
+                </div>
+            </div>
+            <div class="resources">
+                <div class="f-Title">
+                    <p>Resources</p>
+                </div>
+                <div class="f-list">
+                    <a href="">FAQs</a>
+                    <a href="">Blog</a>
+                    <a href="">Guides</a>
+                    <a href="">News & Updates</a>
+                </div>
+            </div>
+        </div>
+        <div class="tagAndSocials">
+            <div class="tag">
+                <p>We will make <i>sure</i> to keep your land safe!</p>
+            </div>
+            <div class="followUs">
+                <div class="followUsTitle">
+                    <p>Follow Us</p>
+                </div>
+                <div class="icons">
+                    <div class="icon">
+                        <a href=""><i class="fa-brands fa-instagram insta"></i></a>
+                    </div>
+                    <div class="icon">
+                        <a href=""><i class="fa-brands fa-x-twitter x"></i></a>
+                    </div>
+                    <div class="icon">
+                        <a href=""><i class="fa-brands fa-linkedin linkedIn"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 LandSure. All Rights Reserved</p>
+        </div>
+    </div>
+
+  <script>
+document.addEventListener("DOMContentLoaded", async () => {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  if (!id) {
+    document.body.innerHTML = "<p>No property selected.</p>";
+    return;
+  }
+
+  let map, marker;
+
+  try {
+    const res = await fetch(`http://localhost:5000/api/listings/${id}`);
+    if (!res.ok) throw new Error("Listing not found");
+    const l = await res.json();
+
+    const editBtn = document.getElementById("editListing");
+    const deleteBtn = document.getElementById("deleteListing");
+
+    // ---- DISPLAY DATA ----
+    document.getElementById("title").textContent = l.title || "N/A";
+    document.getElementById("price").textContent = `₹${l.price || "N/A"}`;
+    document.getElementById("area").textContent = l.area || "N/A";
+    document.getElementById("type").textContent = l.type || "N/A";
+    document.getElementById("location").textContent = l.location || "N/A";
+
+    let dir = l.direction || "N/A";
+    if (dir !== "N/A" && !dir.toLowerCase().includes("facing")) dir += " Facing";
+    document.getElementById("direction").textContent = dir;
+
+    document.getElementById("soil").textContent = l.soil || "N/A";
+    document.getElementById("water").textContent = l.water || "N/A";
+    document.getElementById("legal").textContent = l.legal || "N/A";
+
+    document.getElementById("ownerName").textContent = l.ownerName || "N/A";
+    document.getElementById("ownerContact").textContent = l.ownerContact || "N/A";
+    document.getElementById("ownerEmail").textContent = l.ownerEmail || "N/A";
+    document.getElementById("ownerAddress").textContent = l.ownerAddress || "N/A";
+    document.getElementById("ownerNotes").textContent = l.ownerNotes || "";
+
+    document.getElementById("landmarks").textContent = l.landmarks || "N/A";
+    document.getElementById("roadDistance").textContent = l.roadDistance || "N/A";
+    document.getElementById("envNotes").textContent = l.envNotes || "N/A";
+    document.getElementById("devPotential").textContent = l.devPotential || "N/A";
+    document.getElementById("description").textContent = l.description || "";
+
+    if (l.imageUrl) {
+      const imgUrl = l.imageUrl.startsWith("http")
+        ? l.imageUrl
+        : `http://localhost:5000${l.imageUrl}`;
+      document.getElementById("image").style.backgroundImage = `url('${imgUrl}')`;
+    }
+
+    // ---- INITIALIZE MAP ----
+    const defaultLat = 20.5937;
+    const defaultLng = 78.9629;
+    const hasCoords = typeof l.latitude === "number" && typeof l.longitude === "number";
+
+    map = L.map("map").setView(
+      hasCoords ? [l.latitude, l.longitude] : [defaultLat, defaultLng],
+      hasCoords ? 14 : 5
+    );
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap contributors",
+    }).addTo(map);
+
+    if (hasCoords) {
+      marker = L.marker([l.latitude, l.longitude], { draggable: false })
+        .addTo(map)
+        .bindPopup(l.title || "Property Location")
+        .openPopup();
+    }
+
+    // ---- EDIT MODE LOGIC ----
+    const fields = [
+      "title","price","area","type","location","direction",
+      "soil","water","legal","ownerName","ownerContact",
+      "ownerEmail","ownerAddress","ownerNotes","landmarks",
+      "roadDistance","envNotes","devPotential","description"
+    ];
+
+    const landHeader = document.querySelectorAll(".landheader");
+    const eInfoElems = document.querySelectorAll(".e-info");
+
+    editBtn.addEventListener("click", async () => {
+      const isEditing = editBtn.dataset.editing === "true";
+
+      if (!isEditing) {
+        // --- ENTER EDIT MODE ---
+        fields.forEach(id => {
+          const el = document.getElementById(id);
+          if (!el) return;
+
+          const value = el.textContent.replace("₹","").replace(" Facing","").trim();
+          let input;
+          if (["description","ownerNotes","envNotes"].includes(id)) {
+            input = document.createElement("textarea");
+            input.rows = 3;
+          } else {
+            input = document.createElement("input");
+            input.type = id==="price"?"number":"text";
+          }
+          input.value = value;
+          input.id = `input-${id}`;
+          input.className = "edit-input";
+
+          el.replaceWith(input);
+        });
+
+        landHeader.forEach(el => el.classList.add("edit-mode"));
+        eInfoElems.forEach(el => el.classList.add("edit-mode"));
+
+        // Map draggable
+        if (marker) marker.dragging.enable();
+        else marker = L.marker(map.getCenter(), { draggable: true }).addTo(map);
+        marker.bindPopup("Drag or click map to set new location").openPopup();
+        map.on("click", e => marker.setLatLng([e.lat, e.lng]));
+
+        editBtn.textContent = "Save";
+        editBtn.dataset.editing = "true";
+
+        // Add Cancel button
+        let cancelBtn = document.createElement("button");
+        cancelBtn.textContent = "Cancel";
+        cancelBtn.className = "delete-btn";
+        editBtn.parentNode.appendChild(cancelBtn);
+        cancelBtn.addEventListener("click", () => location.reload());
+
+      } else {
+        // --- SAVE CHANGES ---
+        const updatedData = {};
+        fields.forEach(id => {
+          const input = document.getElementById(`input-${id}`);
+          if (!input) return;
+          updatedData[id] = input.value;
+          if (id==="price") updatedData[id]=Number(updatedData[id]);
+          if (id==="direction" && !updatedData[id].toLowerCase().includes("facing"))
+            updatedData[id]+=" Facing";
+        });
+
+        if (marker) {
+          const pos = marker.getLatLng();
+          updatedData.latitude = pos.lat;
+          updatedData.longitude = pos.lng;
+        }
+
+        try {
+          const res = await fetch(`http://localhost:5000/api/listings/${l._id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type":"application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify(updatedData)
+          });
+
+          if (res.ok) {
+            alert("Listing updated successfully!");
+            window.location.reload();
+          } else alert("Failed to update listing.");
+        } catch(err) {
+          console.error(err);
+          alert("Something went wrong!");
+        }
+      }
+    });
+
+    // ---- DELETE BUTTON ----
+    deleteBtn.addEventListener("click", async () => {
+      if (!confirm("Are you sure you want to delete this listing?")) return;
+      try {
+        const res = await fetch(`http://localhost:5000/api/listings/${l._id}`, {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+        });
+        if (res.ok) {
+          alert("Listing deleted successfully!");
+          window.location.href = "seller.html";
+        } else alert("Failed to delete listing.");
+      } catch(err) {
+        console.error(err);
+        alert("Something went wrong!");
+      }
+    });
+
+  } catch (err) {
+    console.error(err);
+    document.body.innerHTML = "<p>Failed to load property details.</p>";
+  }
+
+  // --- TABS ---
+  const tabs = document.querySelectorAll(".tabs .link");
+  tabs.forEach(tab => {
+    tab.addEventListener("click", e => {
+      e.preventDefault();
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      const target = document.querySelector(tab.getAttribute("href"));
+      if(target) target.scrollIntoView({behavior:"smooth"});
+    });
+  });
+
+  const tabContainer = document.querySelector(".tabs");
+  window.addEventListener("scroll", () => {
+    if(window.scrollY>690) tabContainer.classList.add("sticky-active");
+    else tabContainer.classList.remove("sticky-active");
+  });
+});
+</script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabs = document.querySelectorAll(".tabs .link");
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", (e) => {
+          e.preventDefault();
+          tabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+          const targetId = tab.getAttribute("href");
+          const targetSection = document.querySelector(targetId);
+          if (targetSection) targetSection.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+    });
+
+    const tabs = document.querySelector(".tabs");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 690) {
+        tabs.classList.add("sticky-active");
+      } else {
+        tabs.classList.remove("sticky-active");
+      }
+    });
+  </script>
+</body>
+</html>

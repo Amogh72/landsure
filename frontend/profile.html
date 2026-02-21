@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LandSure.com</title>
+  <link rel="icon" type="image/png" href="Logo-New-Photoroom.png" />
+  <link rel="stylesheet" href="profile.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+</head>
+<body>
+  <div class="header">
+    <div class="back">
+      <a href="home.html" class="goBack">
+        <i class="fa-solid fa-arrow-left"></i><h2> My Profile</h2>
+      </a>
+    </div>
+    <div class="dark">
+      <button id="darkModeToggle" class="darkmode-btn">
+        <i class="fa-solid fa-moon"></i>
+        <p>night mode</p>
+      </button>
+    </div>
+  </div>
+
+  <div class="profile-header">
+    <div class="mp">
+      <div class="picon"><i class="fa-solid fa-user" id="userIcon"></i></div>
+      <div class="name" id="buyer-name">Loading...</div>
+    </div>
+    <div class="controlBtns">
+      <button id="editProfile" class="edit-btn">
+          <i class="fa-solid fa-pen"></i> Edit
+      </button>
+      <button id="deleteAccountBtn" class="delete-btn">
+          <i class="fa-solid fa-trash"></i> Delete
+      </button>
+      <button id="logoutBtn" class="logout-btn">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </button>
+    </div>
+  </div>
+
+  <div class="details">
+    <div class="pd">
+      <div class="info-pd">
+        <p class="pd-title">Email</p>
+        <p class="pd-info" id="buyer-email">Loading...</p>
+      </div>
+      <div class="info-pd">
+        <p class="pd-title">Contact</p>
+        <p class="pd-info" id="buyer-contact">Loading...</p>
+      </div>
+      <div class="info-pd">
+        <p class="pd-title">Government ID</p>
+        <p class="pd-info" id="buyer-govtid">Loading...</p>
+      </div>
+    </div>
+
+    <div class="addDetails">
+      <div class="info-pd">
+        <p class="pd-title">Address</p>
+        <p class="pd-info" id="buyer-address">Not entered</p>
+      </div>
+      <div class="info-pd">
+        <p class="pd-title">Gender</p>
+        <p class="pd-info" id="buyer-gender">Not entered</p>
+      </div>
+      <div class="info-pd">
+        <p class="pd-title">Date of Birth</p>
+        <p class="pd-info" id="buyer-dob">Not entered</p>
+      </div>
+    </div>
+
+    <div class="personalization">
+      <div class="p-img">
+        <div class="img"></div>
+      </div>
+      <div class="p-info">
+            <div class="wrapper">
+        <form id="listingForm" enctype="multipart/form-data">
+            <!-- Form fields here -->
+            <!-- Basic Info -->
+            <div class="basic-info">
+                <div class="fb-title"><p>Preferred land type</p></div>
+                <div class="f-boxes">
+                    <div class="inputbox">
+                        <select name="type" required>
+                            <option value="">Select Land Type</option>
+                            <option value="Agricultural">Agricultural</option>
+                            <option value="Residential">Residential</option>
+                            <option value="Commercial">Commercial</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="basic-info">
+                <div class="fb-title"><p>Preferred Price range</p></div>
+                <div class="f-boxes">
+                    <div class="inputbox"><input type="number" name="price" placeholder="Price (₹)" required></div>
+                </div>
+            </div>
+
+            <!-- Extra Info -->
+            <div class="extra-info">
+                <div class="fb-title"><p>Extra Information</p></div>
+                <div class="f-boxes">
+                    <div class="inputbox"><input type="text" name="direction" placeholder="Direction"></div>
+                    <div class="inputbox"><input type="text" name="soil" placeholder="Soil Type"></div>
+
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+        <div class="links">
+            <div class="properties">
+                <div class="f-Title">
+                    <p>Properties in Pune</p>
+                </div>
+                <div class="f-list">
+                    <a href="">Hinjewadi</a>
+                    <a href="">Baner</a>
+                    <a href="">Balewadi</a>
+                    <a href="">Ravet</a>
+                    <a href="">Talegaon</a>
+                    <a href="">Punawale</a>
+                    <a href="">Mulshi</a>
+                    <a href="">Bendewadi</a>
+                    <a href="">Kharadi</a>
+                    <a href="">Lavasa</a>
+                </div>
+            </div>
+            <div class="types">
+                <div class="f-Title">
+                    <p>Types of lands</p>
+                </div>
+                <div class="f-list">
+                    <a href="">Agricultural</a>
+                    <a href="">Residential</a>
+                    <a href="">Commercial</a>
+                </div>
+            </div>
+            <div class="fabout">
+                <div class="f-Title">
+                    <p>About Us</p>
+                </div>
+                <div class="f-list">
+                    <a href="">About LandSure</a>
+                    <a href="">Aim</a>
+                    <a href="">Contact us</a>
+                    <a href="">Terms and Conditions</a>
+                    <a href="">Founders</a>
+                    <a href="">Privacy Policy</a>
+                    <a href="">Technology used</a>
+                </div>
+            </div>
+            <div class="resources">
+                <div class="f-Title">
+                    <p>Resources</p>
+                </div>
+                <div class="f-list">
+                    <a href="">FAQs</a>
+                    <a href="">Blog</a>
+                    <a href="">Guides</a>
+                    <a href="">News & Updates</a>
+                </div>
+            </div>
+        </div>
+        <div class="tagAndSocials">
+            <div class="tag">
+                <p>We will make <i>sure</i> to keep your land safe!</p>
+            </div>
+            <div class="followUs">
+                <div class="followUsTitle">
+                    <p>Follow Us</p>
+                </div>
+                <div class="icons">
+                    <div class="icon">
+                        <a href=""><i class="fa-brands fa-instagram insta"></i></a>
+                    </div>
+                    <div class="icon">
+                        <a href=""><i class="fa-brands fa-x-twitter x"></i></a>
+                    </div>
+                    <div class="icon">
+                        <a href=""><i class="fa-brands fa-linkedin linkedIn"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 LandSure. All Rights Reserved</p>
+        </div>
+    </div>
+
+  <script>
+document.addEventListener("DOMContentLoaded", async () => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    alert("Please log in first!");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const editBtn = document.getElementById("editProfile");
+
+  // --- FETCH USER DATA ---
+  let userData;
+  try {
+    const res = await fetch("http://localhost:5000/api/users/me", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    userData = await res.json();
+    if (!res.ok) throw new Error(userData.message || "Failed to load user data");
+  } catch (err) {
+    console.error(err);
+    alert("Session expired. Please log in again.");
+    localStorage.clear();
+    window.location.href = "login.html";
+    return;
+  }
+
+  // --- DISPLAY DATA ---
+  document.getElementById("buyer-name").textContent = userData.username || "N/A";
+  document.getElementById("buyer-email").textContent = userData.email || "N/A";
+  document.getElementById("buyer-contact").textContent = userData.contact || "N/A";
+  document.getElementById("buyer-govtid").textContent =
+    `${userData.govt_id_type || "N/A"} - ${userData.govt_id_number || ""}`;
+  document.getElementById("buyer-address").textContent = userData.location || "Not entered";
+  document.getElementById("buyer-gender").textContent = userData.gender || "Not entered";
+  document.getElementById("buyer-dob").textContent = userData.DateofBirth
+  ? new Date(userData.DateofBirth).toISOString().split("T")[0]
+  : "Not entered";
+
+   // --- LOGOUT BUTTON ---
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      if (confirm("Are you sure you want to log out?")) {
+        localStorage.removeItem("token");
+        alert("You have been logged out.");
+        window.location.href = "login.html";
+      }
+    });
+
+    // --- DELETE ACCOUNT BUTTON ---
+    document.getElementById("deleteAccountBtn").addEventListener("click", async () => {
+      if (!confirm("This will permanently delete your account. Continue?")) return;
+
+      try {
+        const res = await fetch("http://localhost:5000/api/users/delete", {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          alert(data.message || "Account deleted successfully.");
+          localStorage.removeItem("token");
+          window.location.href = "signup.html";
+        } else {
+          alert(data.message || "Failed to delete account.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Error deleting account. Please try again later.");
+      }
+    });
+
+
+  // --- EDIT MODE LOGIC ---
+  editBtn.addEventListener("click", async () => {
+    const isEditing = editBtn.dataset.editing === "true";
+    const fields = ["buyer-address", "buyer-gender", "buyer-dob"];
+
+    if (!isEditing) {
+      // --- ENTER EDIT MODE ---
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        const val = el.textContent === "Not entered" ? "" : el.textContent.trim();
+        let input;
+        if (id === "buyer-dob") {
+          input = document.createElement("input");
+          input.type = "date";
+          if (val) input.value = val;
+        } else {
+          input = document.createElement("input");
+          input.type = "text";
+          input.value = val;
+        }
+        input.id = `input-${id}`;
+        input.className = "edit-input";
+        el.replaceWith(input);
+      });
+
+      editBtn.textContent = "Save";
+      editBtn.dataset.editing = "true";
+
+      document.getElementById("logoutBtn").style.display = "none";
+      document.getElementById("deleteAccountBtn").style.display = "none";
+
+      // Add cancel button
+      let cancelBtn = document.createElement("button");
+      cancelBtn.textContent = "Cancel";
+      cancelBtn.className = "cancel-btn";
+      editBtn.parentNode.appendChild(cancelBtn);
+      cancelBtn.addEventListener("click", () => location.reload());
+
+    } else {
+      // --- SAVE CHANGES ---
+      const updated = {
+        location: document.getElementById("input-buyer-address")?.value.trim(),
+        gender: document.getElementById("input-buyer-gender")?.value.trim(),
+        DateofBirth: document.getElementById("input-buyer-dob")?.value,
+      };
+
+      try {
+        const res = await fetch("http://localhost:5000/api/users/update", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(updated),
+        });
+
+        if (res.ok) {
+          alert("Profile updated successfully!");
+          window.location.reload();
+        } else {
+          const errData = await res.json();
+          alert(errData.message || "Failed to update profile");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Error saving changes. Try again later.");
+      }
+    }
+  });
+
+  // --- DARK MODE TOGGLE ---
+  const darkToggle = document.getElementById("darkModeToggle");
+  const body = document.body;
+
+  // Load saved mode
+  if (localStorage.getItem("dark-mode") === "enabled") {
+  body.classList.add("dark-mode");
+  darkToggle.innerHTML = '<i class="fa-solid fa-sun"></i> <p>light mode</p>';
+} else {
+  darkToggle.innerHTML = '<i class="fa-solid fa-moon"></i> <p>night mode</p>';
+}
+
+
+  darkToggle.addEventListener("click", () => {
+  body.classList.toggle("dark-mode");
+  const enabled = body.classList.contains("dark-mode");
+  localStorage.setItem("dark-mode", enabled ? "enabled" : "disabled");
+  
+  // Use innerHTML when you want to insert icons or HTML
+  darkToggle.innerHTML = enabled
+    ? '<i class="fa-solid fa-sun"></i> <p>light mode</p>'
+    : '<i class="fa-solid fa-moon"></i> <p>night mode</p>';
+});
+
+
+});
+  </script>
+</body>
+</html>

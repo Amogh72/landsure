@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandSure - Register</title>
+    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body>
+
+    <div class="signin-form">
+        <div class="wrapper">
+            <form action="">
+                <h1 id="formTitle">Register</h1>
+
+                <div class="inputbox">
+                    <input type="text" id="username" name="username" placeholder="Enter your name" required>
+                    <i class="fa-solid fa-user symbol"></i>
+                </div>
+
+                <div class="inputbox">
+                    <input type="tel" id="contact" name="contact" placeholder="Contact number" pattern="[0-9]{10}" required>
+                    <i class="fa-solid fa-phone symbol"></i>
+                </div>
+
+                <div class="inputbox">
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <i class="fa-solid fa-envelope symbol"></i>
+                </div>
+
+                <div class="inputbox">
+                    <input type="password" id="password-input" name="password" placeholder="Password" required>
+                    <i class="fa-solid fa-lock symbol"></i>
+                </div>
+
+                <div class="inputbox">
+                    <select id="govt_id" name="govt_id" required>
+                        <option value="">Select Government ID Type</option>
+                        <option value="Aadhar">Aadhar card</option>
+                        <option value="PAN">PAN card</option>
+                        <option value="Passport">Passport</option>
+                    </select>
+                </div>
+
+                <div class="inputbox">
+                    <input type="text" name="govt_id_num" placeholder="Government ID number" required>
+                    <i class="fa-solid fa-id-card-clip symbol" style="color: #111212;"></i>
+                </div>
+
+                <div class="inputbox">
+                    <select id="account_type" name="account_type" required>
+                        <option value="">Select Account Type</option>
+                        <option value="Buyer">Buyer</option>
+                        <option value="Seller">Seller</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="signin-btn">Sign In</button><br>
+
+                <div class="or">
+                    <p id="_or">or</p>
+                    <div id="g_id_onload"
+                        data-client_id="662592320155-fd80musmpf28f1hqm8kv9r9532n4dl15.apps.googleusercontent.com"
+                        data-login_uri="http://localhost:3000/auth/google/callback"
+                        data-auto_prompt="false">
+                    </div>
+                    <div class="g_id_signin" 
+                        data-type="standard"
+                        data-shape="rectangular"
+                        data-theme="outline"
+                        data-text="signin_with"
+                        data-size="large">
+                    </div>
+                </div>
+
+                <div class="register-link">
+                    <p>Already have an account? <a href="login.html">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Logout function
+        function logoutUser() {
+            localStorage.removeItem("token");
+            localStorage.removeItem("username");
+            localStorage.removeItem("account_type");
+            localStorage.removeItem("email");
+            localStorage.removeItem("token_expiry");
+
+            alert("Your session has expired. Please login again.");
+            window.location.href = "login.html";
+        }
+
+        // Check token expiry on page load
+        function checkTokenExpiry() {
+            const expiry = localStorage.getItem("token_expiry");
+            if (!expiry) return;
+
+            if (Date.now() > parseInt(expiry)) {
+                logoutUser();
+            } else {
+                setTimeout(logoutUser, parseInt(expiry) - Date.now());
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            checkTokenExpiry();
+        });
+
+        // Registration form submission
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const data = {
+                username: form.username.value,
+                contact: form.contact.value,
+                email: form.email.value.toLowerCase(),
+                password: form.password.value,
+                account_type: form.account_type.value,
+                govt_id_type: form.govt_id.value,
+                govt_id_number: form.govt_id_num.value
+            };
+
+            try {
+                const res = await fetch("http://localhost:5000/api/auth/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await res.json();
+
+                if (res.ok) {
+                    localStorage.setItem("token", result.token);
+                    localStorage.setItem("username", result.username);
+                    localStorage.setItem("account_type", result.account_type);
+                    localStorage.setItem('email', result.email);
+                    const expiryTime = Date.now() + 12 * 60 * 60 * 1000; // 12 hours
+                    localStorage.setItem("token_expiry", expiryTime);
+
+                    // Schedule auto logout
+                    setTimeout(logoutUser, expiryTime - Date.now());
+
+                    if (result.account_type === 'Seller') {
+                        window.location.href = "seller.html";
+                    } else {
+                        window.location.href = "home.html";
+                    }
+                } else {
+                    alert(result.message);
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Something went wrong. Please try again.");
+            }
+        });
+    </script>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</body>
+</html>

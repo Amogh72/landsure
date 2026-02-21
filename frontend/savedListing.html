@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="sL.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <a href="home.html" class="goBack"><i class="fa-solid fa-arrow-left"></i><h2> Saved</h2></a>
+    </div>
+    <div class="filtersandLands">
+        <div class="lands" id="savedLands">
+            <div class="hamburger" onclick="toggleFilters()">☰ Filters</div>
+            <div class="filters">
+                <div class="location">
+                    <select id="loc">
+                        <option value="">Select Location</option>
+                        <option>Mulshi</option>
+                        <option>Punawale</option>
+                        <option>Kanhe</option>
+                        <option>Bendewadi</option>
+                    </select>
+                </div>
+                <div class="price">
+                    <select id="priceRange">
+                        <option value="">Select Price Range</option>
+                        <option value="500000-1000000">₹5 L – ₹10 L</option>
+                        <option value="1000001-5000000">₹10 L – ₹50 L</option>
+                        <option value="5000001-10000000">₹50 L – ₹1 CR</option>
+                        <option value="10000001-50000000">₹1 CR – ₹5 CR</option>
+                        <option value="50000001-100000000">₹5 CR – ₹10 CR</option>
+                    </select>
+                    <div class="custom">
+                        <input type="number" id="minPrice" placeholder="Min Price (₹)">
+                        <input type="number" id="maxPrice" placeholder="Max Price (₹)">
+                    </div>
+                </div>
+                <div class="landType">
+                    <select id="landType">
+                        <option value="">Select land type</option>
+                        <option>Agricultural land</option>
+                        <option>Residential land</option>
+                    </select>
+                </div>
+                <div class="filter-btns">
+                    <button id="applyFilters">Apply filters</button>
+                    <button id="resetFilters">Reset filters</button>
+                </div>
+            </div>
+            <div class="listings"></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFilters() {
+            document.querySelector('.filters').classList.toggle('active');
+        }
+    </script>
+
+<div class="footer">
+        <div class="links">
+            <div class="properties">
+                <div class="f-Title">
+                    <p>Properties in Pune</p>
+                </div>
+                <div class="f-list">
+                    <a href="">Hinjewadi</a>
+                    <a href="">Baner</a>
+                    <a href="">Balewadi</a>
+                    <a href="">Ravet</a>
+                    <a href="">Talegaon</a>
+                    <a href="">Punawale</a>
+                    <a href="">Mulshi</a>
+                    <a href="">Bendewadi</a>
+                    <a href="">Kharadi</a>
+                    <a href="">Lavasa</a>
+                </div>
+            </div>
+            <div class="types">
+                <div class="f-Title">
+                    <p>Types of lands</p>
+                </div>
+                <div class="f-list">
+                    <a href="">Agricultural</a>
+                    <a href="">Residential</a>
+                    <a href="">Commercial</a>
+                </div>
+            </div>
+            <div class="fabout">
+                <div class="f-Title">
+                    <p>About Us</p>
+                </div>
+                <div class="f-list">
+                    <a href="">About LandSure</a>
+                    <a href="">Aim</a>
+                    <a href="">Contact us</a>
+                    <a href="">Terms and Conditions</a>
+                    <a href="">Founders</a>
+                    <a href="">Privacy Policy</a>
+                    <a href="">Technology used</a>
+                </div>
+            </div>
+            <div class="resources">
+                <div class="f-Title">
+                    <p>Resources</p>
+                </div>
+                <div class="f-list">
+                    <a href="">FAQs</a>
+                    <a href="">Blog</a>
+                    <a href="">Guides</a>
+                    <a href="">News & Updates</a>
+                </div>
+            </div>
+        </div>
+        <div class="tagAndSocials">
+            <div class="tag">
+                <p>We will make <i>sure</i> to keep your land safe!</p>
+            </div>
+            <div class="followUs">
+                <div class="followUsTitle">
+                    <p>Follow Us</p>
+                </div>
+                <div class="icons">
+                    <div class="icon">
+                        <a href=""><i class="fa-brands fa-instagram insta"></i></a>
+                    </div>
+                    <div class="icon">
+                        <a href=""><i class="fa-brands fa-x-twitter x"></i></a>
+                    </div>
+                    <div class="icon">
+                        <a href=""><i class="fa-brands fa-linkedin linkedIn"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 LandSure. All Rights Reserved</p>
+        </div>
+    </div>
+
+<script>
+let savedListingsData = []; // global storage
+
+// Render function
+function renderListings(listings) {
+    const listingsContainer = document.querySelector("#savedLands .listings");
+
+    if (!listings || listings.length === 0) {
+        listingsContainer.innerHTML = "<p>No saved listings yet.</p>";
+        return;
+    }
+
+    listingsContainer.innerHTML = "";
+    listings.forEach(listing => {
+        // ✅ Handle both full URLs and relative paths
+        const imgUrl = listing.imageUrl && listing.imageUrl.startsWith("http")
+            ? listing.imageUrl
+            : listing.imageUrl
+                ? `http://localhost:5000${listing.imageUrl}`
+                : "default.jpg";
+
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+            <div class="landImg" style="background-image: url('${imgUrl}')"></div>
+            <button class="save-btn" data-id="${listing._id}">
+                <i class="fa-solid fa-bookmark"></i>
+            </button>
+            <div class="cardContent">
+                <div class="card-heading"><p>${listing.title}</p></div>
+                <div class="cardDetails"><p>₹${listing.price}</p><p>${listing.area}</p></div>
+                <div class="cardDetails"><p>${listing.type}</p></div>
+                <div class="cardbtns">
+                    <button class="view" data-id="${listing._id}">View Details</button>
+                    <button class="contact">Contact Owner</button>
+                </div>
+            </div>
+        `;
+        listingsContainer.appendChild(card);
+    });
+}
+
+document.addEventListener("click", (e) => {
+    const viewBtn = e.target.closest(".view");
+    if (!viewBtn) return;
+console.log("View Details clicked!"); // <-- check if this prints
+    const listingId = viewBtn.dataset.id;
+    console.log(listingId); // <-- check if ID is valid
+
+    if (!listingId) {
+        console.warn("No data-id on this button!");
+        return;
+    }
+
+    // Redirect
+    window.location.href = `details.html?id=${listingId}`;
+});
+
+// Fetch listings on load
+document.addEventListener("DOMContentLoaded", async () => {
+    const listingsContainer = document.querySelector("#savedLands .listings");
+    const token = localStorage.getItem("token");
+
+    try {
+        const res = await fetch("http://localhost:5000/api/users/saved", {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        if (!res.ok) throw new Error("Failed to fetch saved listings");
+
+        savedListingsData = await res.json();
+        renderListings(savedListingsData);
+
+    } catch (err) {
+        console.error(err);
+        listingsContainer.innerHTML = "<p>Failed to load saved listings.</p>";
+    }
+});
+
+// Save/unsave toggle
+document.addEventListener("click", async (e) => {
+    const btn = e.target.closest(".save-btn");
+    if (!btn) return;
+
+    const listingId = btn.dataset.id;
+    const token = localStorage.getItem("token");
+    const accountType = localStorage.getItem("account_type");
+
+    if (!token) return alert("Please login first");
+    if (accountType !== "Buyer") return alert("Only buyers can save listings");
+
+    try {
+        const res = await fetch(`http://localhost:5000/api/users/toggle-save/${listingId}`, {
+            method: "POST",
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+            if (!data.savedListings.includes(listingId)) {
+                btn.closest(".card").remove(); // remove unsaved card
+            }
+        } else {
+            alert(data.message);
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Server error");
+    }
+});
+
+// Apply filters
+document.getElementById("applyFilters").addEventListener("click", () => {
+    const location = document.getElementById("loc").value;
+    const priceRange = document.getElementById("priceRange").value;
+    const minPrice = parseInt(document.getElementById("minPrice").value) || null;
+    const maxPrice = parseInt(document.getElementById("maxPrice").value) || null;
+    const landType = document.getElementById("landType").value;
+
+    let filtered = savedListingsData;
+
+    if (location) {
+        filtered = filtered.filter(l => l.location === location);
+    }
+
+    if (priceRange) {
+        const [min, max] = priceRange.split("-").map(Number);
+        filtered = filtered.filter(l => l.price >= min && l.price <= max);
+    }
+
+    if (minPrice !== null) {
+        filtered = filtered.filter(l => l.price >= minPrice);
+    }
+    if (maxPrice !== null) {
+        filtered = filtered.filter(l => l.price <= maxPrice);
+    }
+
+    if (landType) {
+        filtered = filtered.filter(l => l.type === landType);
+    }
+
+    renderListings(filtered);
+});
+
+// Reset filters
+document.getElementById("resetFilters").addEventListener("click", () => {
+    document.getElementById("loc").value = "";
+    document.getElementById("priceRange").value = "";
+    document.getElementById("minPrice").value = "";
+    document.getElementById("maxPrice").value = "";
+    document.getElementById("landType").value = "";
+
+    renderListings(savedListingsData); // reset back
+});
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+.header {
+    width: 100%;
+    padding: 20px 0 20px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10000;
+}
+
+.goBack {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 200px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+}
+
+.goBack i {
+    font-size: 1.5rem;
+}
+
+.goBack:hover {
+    color: #656363;
+}
+
+.filtersAndListings {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.listings {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 20px 0 20px;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.card {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+}
+
+.landImg {
+    width: 30%;
+    background-image: url("mulshi.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.cardContent {
+    padding: 10px 10px 10px 20px;
+    position: relative;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-heading {
+    font-size: 1.3rem;
+    margin-bottom: 1px;
+}
+
+.Landtype {
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.areaOfLand, .owner {
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.cardDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.save-btn {
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0 10px 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease;
+}
+
+.save-btn:hover {
+    background-color: rgba(124, 180, 240, 0.8);
+    color: #fff;
+}
+
+.save-btn.saved i {
+    color: #007bff;
+}
+
+.cardbtnsAndVerify {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.contact {
+    flex: 1;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0 10px 0 10px;
+    background: rgb(127, 127, 249);
+    color: #fff;
+    transition: 0.2s ease;
+}
+
+.contact:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    background: #fff;
+    color: #444;
+}
+
+.verified {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #3a7d00;
+    font-size: 0.8rem;
+    padding: 3px 6px;
+    border-radius: 5px;
+    border: 1px solid #9ff124;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.verified i {
+    font-size: 0.8rem;
+}
+
+.verified p {
+    margin: 0;
+    line-height: 1;
+}
+
+.filters {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    gap: 2.3rem;
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: 20px 20px 0 20px;
+    position: sticky; /* changed from sticky to fixed */
+    top: 20px;
+    border-radius: 5px;
+    height: fit-content;
+    z-index: 900; /* make sure it stays above content but below header */
+}
+
+
+.filter-group select {
+    width: 100%;
+    height: 40px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: white;
+    border: 2px solid rgba(26, 25, 25, 0.2);
+    border-radius: 40px;
+    font-size: 0.9rem;
+    color: black;
+    padding: 10px 45px 10px 20px; 
+    background-image: url("data:image/svg+xml,%3Csvg fill='%23575656' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center; 
+    background-size: 16px;
+}
+
+.price {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.filter-btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.filter-btns button {
+    height: 40px;
+    width: 180px;
+    border: none;
+    border-radius: 45px;
+    background-color: rgb(84, 84, 252);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px;
+    transition: transform 0.2s ease-in;
+}
+
+#applyFilters:hover, #resetFilters:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    gap: 30px;
+}
+
+.pagination button {
+    width: 10%;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #7f7ff9;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.pagination button:hover {
+    background-color: #6563f5;
+}
+
+.pagination .current-page {
+    font-weight: bold;
+}

@@ -1,0 +1,626 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+                 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px 20px 20px 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.goBack {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 180px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+}
+
+.goBack i {
+    font-size: 1.5rem;
+}
+
+.goBack:hover {
+    color: #656363;
+}
+
+.profile-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 60px;
+    margin-bottom: 60px;
+}
+
+#userIcon {
+    font-size: 30px;
+    color: white;
+}
+
+.mp {
+    width: 50%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 30px;
+}
+
+.picon {
+    width: 60px;
+    height: 60px;
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background-color: grey;
+}
+
+.name {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.controlBtns {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.edit-btn, .cancel-btn, .logout-btn, .delete-btn {
+    flex: 1;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 10px 10px 10px;
+    color: #fff;
+    transition: 0.2s ease;
+}
+
+.darkmode-btn {
+    height: 30px;
+    font-weight: 400;
+    width: auto;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: #fff;
+    color: black;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.cancel-btn, .delete-btn {
+    background: rgb(236, 15, 15);
+}
+
+.logout-btn {
+    color: white;
+    background-color: #2e2e2e;
+}
+
+.edit-btn {
+    background: rgb(80, 80, 244);
+}
+
+.edit-btn:hover, .cancel-btn:hover, .logout-btn:hover, .delete-btn:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    background: #fff;
+    color: #444;
+}
+
+.details {
+    width: 100%;
+    padding: 0 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pd, .addDetails {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
+    margin-bottom: 50px;
+}
+
+.info-pd {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pd-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.pd-info {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.edit-input {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 5px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f0f4ff;
+    transition: border 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edit-input:focus {
+    outline: none;
+    border-color: #6464f1;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(100, 100, 241, 0.3);
+}
+
+.personalization {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.p-img {
+    width: 100%;
+    height: 548px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    margin-bottom: 40px;
+}
+
+.p-img .img {
+    width: 100%;
+    height: 100%;
+    background-image: url("personalize.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+
+
+.p-info {
+    width: 1076px;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.inputbox {
+    position: relative;
+    width: 100%;
+}
+
+.inputbox input,
+.inputbox select,
+.inputbox textarea {
+    width: 100%;
+    height: 45px;
+    padding: 10px 20px;
+    border-radius: 40px;
+    border: 2px solid rgba(26,25,25,0.2);
+    font-size: 16px;
+    color: #444;
+    outline: none;
+    transition: 0.3s;
+}
+
+.inputbox input:focus,
+.inputbox select:focus,
+.inputbox textarea:focus {
+    border-color: #59b409;
+}
+
+/* Select Arrow */
+.inputbox select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 45px;
+    background-image: url("data:image/svg+xml,%3Csvg fill='%23575656' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+}
+
+/* Textarea */
+.inputbox textarea {
+    border-radius: 40px;
+    resize: vertical;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 50%;
+    height: 45px;
+    background: #59b409;
+    border: none;
+    border-radius: 45px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fafafa;
+    margin-top: 20px;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+}
+
+.submit-btn:hover {
+    background: #4ea105;
+}
+
+.basic-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fb-title {
+    border: 1px solid #ccc;
+    width: 100%;
+    background-color: #fafafa;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    color: #333;
+    font-weight: 500;
+}
+
+.f-boxes {
+    border: 1px solid #ccc;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    margin-top: 5px;
+    justify-content: center;
+    gap: 15px;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+#aL {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* --------- Base Dark Mode --------- */
+body.dark-mode {
+  background-color: #121212;
+  color: #e6e6e6; /* slightly softer white for better contrast */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+body.dark-mode .header {
+  background-color: #1c1c2a; /* a bit darker, blends smoother */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Back link */
+body.dark-mode .goBack {
+  color: #ffffff;
+  transition: color 0.2s ease;
+}
+body.dark-mode .goBack:hover {
+  color: #9fa8da; /* soft bluish hover instead of plain gray */
+}
+
+/* Dark mode toggle */
+body.dark-mode .darkmode-btn {
+  background-color: transparent;
+  color: #e6e6e6;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  padding: 5px 10px;
+  transition: 0.3s;
+}
+body.dark-mode .darkmode-btn:hover {
+  background-color: #2a2a3a;
+  border-color: #6a5acd;
+  color: #fff;
+}
+
+/* Profile icon */
+body.dark-mode .picon {
+  background-color: #2a2a3a;
+}
+body.dark-mode #userIcon {
+  color: #a0a0a0;
+}
+
+/* Info text */
+body.dark-mode .pd-info {
+  color: #cccccc; /* brighter neutral gray */
+}
+
+/* Section borders */
+body.dark-mode .pd,
+body.dark-mode .addDetails {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .edit-btn,
+body.dark-mode .cancel-btn,
+body.dark-mode .logout-btn,
+body.dark-mode .delete-btn {
+  background: #2a2a3a;
+  color: #ddd;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode .edit-btn:hover {
+  background-color: rgb(80, 80, 244);
+  color: #fff;
+}
+body.dark-mode .delete-btn:hover,
+body.dark-mode .cancel-btn:hover {
+  background-color: rgb(236, 15, 15);
+  color: #fff;
+}
+body.dark-mode .logout-btn:hover {
+  background-color: #3a3a3a;
+  color: #fff;
+}
+
+body.dark-mode .edit-input {
+  background-color: #1e1e2f;
+  color: #fff;
+  border: 2px solid #6a5acd;
+  box-shadow: 0 0 6px rgba(106, 90, 205, 0.2);
+}
+body.dark-mode .edit-input:focus {
+  border-color: #7b68ee;
+  box-shadow: 0 0 10px rgba(123, 104, 238, 0.4);
+}
+
+body.dark-mode .p-info {
+  background-color: #1e1e2f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+}
+
+body.dark-mode .fb-title {
+  background-color: #121212;
+  color: #fff;
+  border: none;
+}
+
+body.dark-mode .submit-btn {
+    color: #121212;
+    background-color: #fff;
+}
+
+.footer {
+    width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    padding: 30px 60px 30px 60px;
+    margin-top: 30px;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ccc;
+}
+
+.f-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.f-list a {
+    transition: transform 0.1s ease-in, color 0.2s ease-in;
+}
+
+.f-list a:hover {
+    color: #007bff;
+    transform: translateX(3px);
+}
+
+.f-Title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.48rem;
+}
+
+.f-list a {
+    text-decoration: none;
+    color: #444;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.feedback {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 30px;
+}
+
+.feedbackP {
+    width: 50%;
+    font-size: 2rem;
+}
+
+.feedbackForm {
+    width: 50%;
+}
+
+.inputbox {
+    position: relative;
+    width: 100%;
+}
+
+.inputbox input, .inputbox textarea {
+    width: 100%;
+    background: #fafafa;
+    border: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #444;
+    padding: 10px;
+}
+
+.inputbox input {
+    margin-bottom: 20px;
+}
+
+.inputbox textarea {
+    min-height: 120px;
+    resize: none;         
+    overflow-wrap: break-word;  
+    white-space: pre-wrap; 
+    margin-bottom: 16px;
+}
+
+.inputbox input:focus, .inputbox textarea:focus {
+    outline: none;
+    border: 1px solid rgb(100, 100, 241);
+    box-shadow: 0 0 8px rgba(100, 100, 241, 0.2);
+    transition: 0.2s ease-in-out;
+}
+
+.fbsubmit-btn {
+    flex: 1;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 45px;
+    background-color: rgb(84, 84, 252);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0 10px 0 10px;
+    transition: 0.2s ease-in;
+}
+
+.fbsubmit-btn:hover {
+    background: rgb(141, 141, 249);
+    color: #444;
+}
+
+.tagAndSocials {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ccc;
+}
+
+.tag {
+    font-size: 2rem;
+    width: 60%;
+}
+
+.tag i {
+    color: rgb(100, 100, 241);
+}
+
+.followUs {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.icons {
+    display: flex;
+    gap: 5px;
+}
+
+.icons i {
+    font-size: 2rem;
+    color: #555;
+    transition: color 0.2s ease-in-out;
+}
+
+.icons .insta:hover {
+    color: #d62976;
+}
+
+.icons .x:hover {
+    color: black;
+}
+
+.icons .linkedIn:hover {
+    color: #0A66C2;
+}
+
+.copyright {
+    margin-top: 30px;
+    text-align: center;
+}
+
+body.dark-mode .f-list a {
+    color: #ddd;
+}
+
+body.dark-mode .f-list a:hover {
+    color: #9ac6f6;
+}
+
+body.dark-mode .icons i {
+    color: #bbb;
+}
+
+body.dark-mode .x:hover {
+    color: #fff;
+}
+
+body.dark-mode .footer {
+    box-shadow: 0 6px 12px rgba(254, 253, 253, 0.1);
+}
