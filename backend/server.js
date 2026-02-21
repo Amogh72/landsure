@@ -10,7 +10,7 @@ const Listing = require("./models/Listing");
 const app = express();  // Create app before using middlewares
 
 app.use(cors({
-  origin: true,   // allow requesting origin dynamically
+  origin: "https://land-sure.netlify.app",   // allow requesting origin dynamically
   credentials: true
 }));
 app.use(express.json());
